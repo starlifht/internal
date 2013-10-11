@@ -5,8 +5,8 @@
 <struts>
     <constant name="struts.multipart.maxSize" value="200000000" />
 	<constant name="struts.devMode" value="true" />
-	<constant name="struts.i18n.encoding" value="utf-8" />
-	<package name="test" namespace="/" extends="struts-default">
+	<constant name="struts.i18n.encoding" value="GBK" />
+	<package name="internal" namespace="/" extends="struts-default">
 	    <default-action-ref name="index"></default-action-ref>
          <action name="index" class="com.test.action.index">
             <result>
