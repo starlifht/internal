@@ -108,7 +108,7 @@ public class CommonTools {
 	            out.write(para);
 	            out.flush();
 	            out.close();
-	            BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	            BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(),"GBK"));
 	            String line = "";
 	            String response="";
 	            for (line = br.readLine(); line != null; line = br.readLine()) {

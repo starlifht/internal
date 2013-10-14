@@ -179,6 +179,24 @@ static String response=null;
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
 		}
+		try{
+			APITools.apiName="getMobCode";
+			response=Mobile.getMobCode(APITools.getPhoneNum2());
+		//	getLogInfo(AutoTools.replaceBlank(response));
+			APITools.xmlCheck(response,APITools.xmlInfo, "status", "0");
+
+		}catch(Exception e ){
+					APITools.doException(APITools.apiName, APITools.errorInfo, e);
+		}
+		try{
+			APITools.apiName="authMobCode";
+			response=Mobile.authMobCode();
+		//	getLogInfo(AutoTools.replaceBlank(response));
+			//APITools.xmlCheck(response,APITools.xmlInfo, "status", "0");
+
+		}catch(Exception e ){
+					APITools.doException(APITools.apiName, APITools.errorInfo, e);
+		}
 	}
 
 	// ****************************************Internal*************************************************
@@ -406,8 +424,8 @@ static String response=null;
 
 	public static void main(String[] args) {
 		// Auto.Auto_HuDun();
-//		 Auto_HuDun();
-		 Auto_Mobile();
+		 Auto_HuDun();
+		// Auto_Mobile();
 		//Auto_Internal();
 	
 		//System.out.print(HuDun.logInfo);

@@ -117,15 +117,17 @@ public class XML {
 	        }  }
 	public static void main(String[] args) throws Exception {
         String s = "<?xml version=\"1.0\" encoding=\"GBK\"?><result><status>0</status></result>";
-
-		 SAXBuilder builder = new SAXBuilder(false);  
-		java.io.InputStream in = XML.class.getClassLoader().getResourceAsStream("struts.xml");  
-        Document doc = string2Doc(s);  
-       
-        // 获取根节点 <university>  
-//        Element root = doc.getRootElement();  
-//        readNode(root, ""); 
-        System.out.print(doc.getRootElement().getChildText("status"));
+        	int a=s.indexOf("<?"); 
+        	int b=s.indexOf("?>")+2;
+        	System.out.print(s.substring(b));
+//		 SAXBuilder builder = new SAXBuilder(false);  
+//		java.io.InputStream in = XML.class.getClassLoader().getResourceAsStream("struts.xml");  
+//        Document doc = string2Doc(s);  
+//       
+//        // 获取根节点 <university>  
+////        Element root = doc.getRootElement();  
+////        readNode(root, ""); 
+//        System.out.print(doc.getRootElement().getChildText("status"));
 	//readXMLContent();
         
 	}

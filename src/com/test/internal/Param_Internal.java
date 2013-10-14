@@ -24,7 +24,7 @@ public class Param_Internal {
 			APITools.xmlCheck(
 					Internal.checkUser(userid),
 					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), status);
+							+ APITools.getParams("status:" + status),"status" ,status);
 
 		}
 	}
@@ -45,7 +45,7 @@ public class Param_Internal {
 			APITools.xmlCheck(
 					Internal.checkuniqname(userid),
 					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), status);
+							+ APITools.getParams("status:" + status), "status",status);
 
 		}
 	}
@@ -67,14 +67,14 @@ public class Param_Internal {
 						Internal.authUser(userid, "1"),
 						APITools.getParams("userID:" + userid)
 								+ APITools.getParams("status:" + status),
-						status);
+								"status",status);
 
 			} else {
 				APITools.xmlCheck(
 						Internal.authUser(userid, "0"),
 						APITools.getParams("userID:" + userid)
 								+ APITools.getParams("status:" + status),
-						status);
+								"status",status);
 			}
 		}
 	}
@@ -94,7 +94,7 @@ public class Param_Internal {
 			APITools.xmlCheck(
 					Internal.activate(userid),
 					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), status);
+							+ APITools.getParams("status:" + status), "status",status);
 		}
 	}
 
@@ -113,7 +113,7 @@ public class Param_Internal {
 			APITools.xmlCheck(
 					Internal.syncv(userid),
 					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), status);
+							+ APITools.getParams("status:" + status), "status",status);
 		}
 	}
 
@@ -132,7 +132,7 @@ public class Param_Internal {
 			APITools.xmlCheck(
 					Internal.checkV(userid),
 					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), status);
+							+ APITools.getParams("status:" + status), "status",status);
 		}
 	}
 
@@ -151,7 +151,7 @@ public class Param_Internal {
 			APITools.xmlCheck(
 					Internal.getlastlogin(userid),
 					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), status);
+							+ APITools.getParams("status:" + status), "status",status);
 		}
 	}
 
@@ -175,7 +175,7 @@ public class Param_Internal {
 					Internal.updateUser(userid, uniqname),
 					APITools.getParams("userID:" + userid)
 							+ APITools.getParams("uniqName:" + uniqname)
-							+ APITools.getParams("status:" + status), status);
+							+ APITools.getParams("status:" + status), "status",status);
 
 		}
 	}
@@ -214,7 +214,7 @@ public class Param_Internal {
 			APITools.xmlCheck(
 					Internal.getUserinfo(userid),
 					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), status);
+							+ APITools.getParams("status:" + status), "status",status);
 		}
 	}
 
@@ -564,7 +564,7 @@ public class Param_Internal {
 								+ APITools.getParams("type:"
 										+ String.valueOf(i))
 								+ APITools.getParams("status:" + status),
-						status);
+								"status",status);
 			}
 		}
 	}

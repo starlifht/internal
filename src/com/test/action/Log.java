@@ -46,12 +46,16 @@ public class Log extends ActionSupport{
 		props.setProperty("log4j.appender.CONSOLE","org.apache.log4j.RollingFileAppender");
 		props.setProperty("log4j.appender.Threshold","WARN");
 		props.setProperty("log4j.appender.CONSOLE.layout","org.apache.log4j.PatternLayout");
+		props.setProperty("log4j.appender.CONSOLE.encoding", "UTF-8");
 		props.setProperty("log4j.appender.CONSOLE.layout.ConversionPattern","[%-5p]%d{yyyy-MM-dd HH:mm:ssS} %c %m%n");
 		props.setProperty("log4j.appender.CONSOLE.File",System.getenv("LOG_FILE"));   
 		PropertyConfigurator.configure(props);
 		log.info(APITools.logInfo);	
+		//response.setContentType("text/html");
+		  //±àÂë
+		 // response.setCharacterEncoding("UTF-8");
 		PrintWriter out=response.getWriter();
-		out.print(APITools.logInfo);
+		out.print(new String(APITools.logInfo.toString()));
 		out.print("ssss");
 		out.flush();
 		out.close();

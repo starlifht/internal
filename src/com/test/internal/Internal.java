@@ -1013,8 +1013,8 @@ APITools.xmlInfo=xml.toString();
 //		System.out.print(js.get("status"));
 		//activate("ppauthtest1@focus.cn");
 		//getUserBlackList();
-		getServerToken();
-		//registUser("zhangxiumin_001@sogou.com","200","sohu_test");
+		//getServerToken();
+		registUser("ppautt1@sohu.com","200","sohu_test");
 		//registUser("ppauthtest1@vip.sohu.com","1013","djfi(Y&%ye483y45&%^830934dHisd2y%*HIUGDdii");
 		//getUUidByUserId("107607195@qq.com");
 	}

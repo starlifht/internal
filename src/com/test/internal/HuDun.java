@@ -107,7 +107,7 @@ public class HuDun {
 	public static void main(String[] args) {
 		
 		try {
-			sethudunconfig("107607195@qq.com");
+			synchudun("ÖÐ¹úÈËtest123@focus.cn");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

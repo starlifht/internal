@@ -746,12 +746,42 @@ public class Mobile {
 		return rtn_xml;
 	
 	    }
+	  public static String  getMobCode(String PhoneNum) throws Exception {//——————获取手机号登陆的验证码
+		//0：成功 1：参数错误，请检查必填项是否缺少2：code错误 3：手机号获取验证码间隔小于1分钟 4: 手机号获取验证码次数超限 5: ip获取验证码次数超限     6：此手机号的登陆错误次数超限 7：ip登陆错误次数超限
+					String mobile = PhoneNum;
+					String appid = "9998";
+					String key = "iqE?q#gv8--`G/jGA51]=ZANMg?=Lm";
+					String ct = String.valueOf(System.currentTimeMillis() / 1000);
+					String code = PPTools.md5(mobile + appid + key + ct);
+					String rtn_xml = "";
 
+					String str_url = Params.DOMAIN+"interface/getMobCode";
 
+					StringBuffer xml = new StringBuffer();
+					xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
+					xml.append("<info>\r\n");
+					xml.append("<mobile>" + mobile + "</mobile>\r\n");
+					xml.append("<appid>" + appid + "</appid>\r\n");
+					xml.append("<ct>" + ct + "</ct>\r\n");
+					xml.append("<code>" + code + "</code>\r\n");
+					xml.append("<ip>" + "10.1.80.103" + "</ip>\r\n");
+					xml.append("</info>");
+					APITools.xmlInfo=xml.toString();
+					rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
+
+					System.out.println(rtn_xml);
+					System.out.println("**********************************getMobCode()*********************************");
+					return rtn_xml;
+					}
+public static String authMobCode() throws Exception{
+	String rtn=CommonTools.HttpGet("https://passport.sohu.com/act/authMobCode?mobile=18810606513&appid=9998&captcha=43533");
+	return rtn;
+	
+}
 
 
 	public static void main(String[] args) throws Exception {
-mobileRegUser();
+		getMobCode("18810606513");
 //		mobile_gettoken();
 	//wapAuthMobile(user1,PhoneNum);
 //mobileRegUser();

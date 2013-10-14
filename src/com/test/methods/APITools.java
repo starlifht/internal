@@ -16,30 +16,36 @@ public class APITools {
 	 public static StringBuffer errorInfo=new StringBuffer();
 	 public static String apiName=null;
 	 public static StringBuffer logInfo=new StringBuffer();
-	 public static void xmlCheck(String response,String params,String status) throws Exception{//◊¥Ã¨ºÏ≤È
-			logInfo=APITools.getInfo(logInfo, APITools.getAPIname(apiName), response);
-
-			if(!XML.string2Doc(response).getRootElement().getChildText("status").equals(status)){			
-			
-				errorInfo=APITools.getInfo(errorInfo, APITools.getAPIname(apiName), response+"{"+APITools.replaceBlank(APITools.xmlInfo.trim())+"}");
-			}
-			
-		}
+//	 public static void xmlCheck(String response,String params,String status) throws Exception{//◊¥Ã¨ºÏ≤È
+//
+//			if(XML.string2Doc(response).getRootElement().getChildText("status").equals(status)){			
+//				logInfo=APITools.getInfo(logInfo, APITools.getAPIname(apiName), response);
+//
+//			}else{
+//				errorInfo=APITools.getInfo(errorInfo, APITools.getAPIname(apiName), "[ERROR]"+response+"{"+APITools.replaceBlank(APITools.xmlInfo.trim())+"}");
+//
+//			}
+//			
+//		}
 	 public static void xmlCheck(String response,String params,String element,String status) throws Exception{//◊¥Ã¨ºÏ≤È
-			logInfo=APITools.getInfo(logInfo, APITools.getAPIname(apiName), response);
 
-			if(!XML.string2Doc(response).getRootElement().getChildText(element).equals(status)){			
-			
-				errorInfo=APITools.getInfo(errorInfo, APITools.getAPIname(apiName), response+"{"+APITools.replaceBlank(APITools.xmlInfo.trim())+"}");
+			if(XML.string2Doc(response).getRootElement().getChildText(element).equals(status)){			
+				logInfo=APITools.getInfo(logInfo, APITools.getAPIname(apiName), response);
+
+			}else{
+				errorInfo=APITools.getInfo(errorInfo, APITools.getAPIname(apiName), "[ERROR]"+response+"{"+APITools.replaceBlank(APITools.xmlInfo.trim())+"}");
+
 			}
 			
 		}
 	 public static void jsonCheck(String response,String params,String status) throws Exception{//◊¥Ã¨ºÏ≤È
-			logInfo=APITools.getInfo(logInfo, APITools.getAPIname(apiName), response+"{"+params+"}");
 
-			if(!APITools.toJson(response).get("status").equals(status)){			
-			
-				errorInfo=APITools.getInfo(errorInfo, APITools.getAPIname(apiName), response+"{"+params+"}");
+			if(APITools.toJson(response).get("status").equals(status)){			
+				logInfo=APITools.getInfo(logInfo, APITools.getAPIname(apiName), response+"{"+params+"}");
+
+			}else{
+				errorInfo=APITools.getInfo(errorInfo, APITools.getAPIname(apiName), "[ERROR]"+response+"{"+params+"}");
+
 			}
 			
 		}
@@ -84,8 +90,9 @@ public class APITools {
 	}
 
 	public static StringBuffer getInfo(StringBuffer info,String APIname,String response){//∆¥¥’log–≈œ¢
+		response=response.replaceAll("/", "").replaceAll("><", "|").replaceAll("<", "|").replaceAll(">", "|");
 		String date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());		
-		return info.append(date+" "+APIname+" "+response.trim()).append(System.getProperty("line.separator"));			
+		return info.append(date+" "+APIname+" "+response).append(System.getProperty("line.separator"));			
 	}
 	public static void doException(String APIname,StringBuffer info,Exception e) 
 	{//¥¶¿Ì“Ï≥£
