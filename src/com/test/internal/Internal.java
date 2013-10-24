@@ -290,6 +290,8 @@ APITools.xmlInfo=xml.toString();
 		
 	}
 	public static String authUser(String userId,String userType) throws Exception {//————校验用户名、密码是否正确0（用户登录接口)
+		
+		//1:userid的值为手机号；usertype为0，userid值为全域名id，如：test-1@sohu.com
 		//status为0用户名密码正确，1参数错误，2code错误，3用户名密码不匹配，4外域用户未激活，5手机号码没有绑定（wap专用）6校验失败
 		String userid =userId;
 		String appid = "200";
@@ -309,7 +311,8 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<code>" + code + "</code>\r\n");
 		xml.append("<password>" + password + "</password>\r\n");
 		xml.append("<pwdtype>" + "0" + "</pwdtype>\r\n"); 
-		xml.append("<usertype>" + userType + "</usertype>\r\n"); 
+		xml.append("<usertype>" + userType + "</usertype>\r\n");
+		//xml.append("<stoken>"+"962872"+"</stoken>\r\n");	
 		xml.append("</info>");
 		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		APITools.xmlInfo=xml.toString();
@@ -977,7 +980,7 @@ APITools.xmlInfo=xml.toString();
 					xml.append("<appid>" + appid + "</appid>\r\n");
 					xml.append("<ct>" + ct + "</ct>\r\n");
 					xml.append("<code>" + code + "</code>\r\n");				
-					xml.append("<type>"+type+"</type>\r\n");				
+					xml.append("<type>"+type+"</type>\r\n");					
 					xml.append("</info>");
 					String rtn_xml = CommonTools.createXMLURLConnection(str_url,xml.toString());
 					APITools.xmlInfo=xml.toString();
@@ -1012,10 +1015,13 @@ APITools.xmlInfo=xml.toString();
 //		JSONObject js=APITools.toJson(s);
 //		System.out.print(js.get("status"));
 		//activate("ppauthtest1@focus.cn");
+//		getUidByUserid("ppauthtest2@sohu.com");
+//		getUUidByUserId("ppauthtest2@sohu.com");
 		//getUserBlackList();
 		//getServerToken();
-		registUser("ppautt1@sohu.com","200","sohu_test");
-		//registUser("ppauthtest1@vip.sohu.com","1013","djfi(Y&%ye483y45&%^830934dHisd2y%*HIUGDdii");
+	//	authUser("ppauthtest1@sohu.com","0");
+	registUser("ppauthtest2@sohu.com","200","sohu_test");
+	//	//registUser("ppauthtest1@vip.sohu.com","1013","djfi(Y&%ye483y45&%^830934dHisd2y%*HIUGDdii");
 		//getUUidByUserId("107607195@qq.com");
 	}
 

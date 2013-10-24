@@ -22,9 +22,7 @@ public class Param_Internal {
 			String status = iter2.next();
 
 			APITools.xmlCheck(
-					Internal.checkUser(userid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status),"status" ,status);
+					Internal.checkUser(userid),"status" ,status);
 
 		}
 	}
@@ -43,9 +41,7 @@ public class Param_Internal {
 			String status = iter2.next();
 
 			APITools.xmlCheck(
-					Internal.checkuniqname(userid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), "status",status);
+					Internal.checkuniqname(userid), "status",status);
 
 		}
 	}
@@ -65,15 +61,11 @@ public class Param_Internal {
 			if (userid.equals("18820606515")) {
 				APITools.xmlCheck(
 						Internal.authUser(userid, "1"),
-						APITools.getParams("userID:" + userid)
-								+ APITools.getParams("status:" + status),
 								"status",status);
 
 			} else {
 				APITools.xmlCheck(
 						Internal.authUser(userid, "0"),
-						APITools.getParams("userID:" + userid)
-								+ APITools.getParams("status:" + status),
 								"status",status);
 			}
 		}
@@ -92,9 +84,7 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String status = iter2.next();
 			APITools.xmlCheck(
-					Internal.activate(userid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), "status",status);
+					Internal.activate(userid), "status",status);
 		}
 	}
 
@@ -111,9 +101,7 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String status = iter2.next();
 			APITools.xmlCheck(
-					Internal.syncv(userid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), "status",status);
+					Internal.syncv(userid), "status",status);
 		}
 	}
 
@@ -130,9 +118,7 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String status = iter2.next();
 			APITools.xmlCheck(
-					Internal.checkV(userid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), "status",status);
+					Internal.checkV(userid), "status",status);
 		}
 	}
 
@@ -149,9 +135,7 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String status = iter2.next();
 			APITools.xmlCheck(
-					Internal.getlastlogin(userid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), "status",status);
+					Internal.getlastlogin(userid), "status",status);
 		}
 	}
 
@@ -173,9 +157,7 @@ public class Param_Internal {
 			String status = iter3.next();
 			APITools.xmlCheck(
 					Internal.updateUser(userid, uniqname),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("uniqName:" + uniqname)
-							+ APITools.getParams("status:" + status), "status",status);
+					 "status",status);
 
 		}
 	}
@@ -212,9 +194,7 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String status = iter2.next();
 			APITools.xmlCheck(
-					Internal.getUserinfo(userid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), "status",status);
+					Internal.getUserinfo(userid), "status",status);
 		}
 	}
 
@@ -231,9 +211,7 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String uid = iter2.next();
 			APITools.xmlCheck(
-					Internal.getUidByUserid(userid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("uid:" + uid), "uid", uid);
+					Internal.getUidByUserid(userid), "uid", uid);
 		}
 	}
 
@@ -249,9 +227,7 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String uid = iter2.next();
 			APITools.xmlCheck(
-					Internal.getUserIdByUid(uid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("uid:" + uid), "userid",
+					Internal.getUserIdByUid(uid), "userid",
 					userid);
 		}
 	}
@@ -268,9 +244,7 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String uuid = iter2.next();
 			APITools.xmlCheck(
-					Internal.getUserIdByUUid(uuid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("uuid:" + uuid), "userid",
+					Internal.getUserIdByUUid(uuid), "userid",
 					userid);
 		}
 	}
@@ -287,9 +261,7 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String uuid = iter2.next();
 			APITools.xmlCheck(
-					Internal.getUUidByUserId(userid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("uuid:" + uuid), "uuid", uuid);
+					Internal.getUUidByUserId(userid), "uuid", uuid);
 		}
 	}
 
@@ -343,9 +315,7 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String status = iter2.next();
 			APITools.xmlCheck(
-					Internal.updatepwd(userid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), "status",
+					Internal.updatepwd(userid), "status",
 					"0");
 		}
 	}
@@ -362,9 +332,7 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String status = iter2.next();
 			APITools.xmlCheck(
-					Internal.update_password(userid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), "status",
+					Internal.update_password(userid), "status",
 					"0");
 		}
 	}
@@ -396,9 +364,7 @@ public class Param_Internal {
 
 				// String authResp=Internal.authUser(userID,"0");
 				APITools.xmlCheck(
-						Internal.update_password(userID),
-						APITools.getParams("userID:" + userID)
-								+ APITools.getParams("status:0"), "status", "0");
+						Internal.update_password(userID), "status", "0");
 
 			} else {
 				userID = userName + "@" + userID;
@@ -406,9 +372,7 @@ public class Param_Internal {
 				response = Internal.registUser(userID, appID, Key);
 
 				APITools.xmlCheck(
-						Internal.update_password(userID),
-						APITools.getParams("userID:" + userID)
-								+ APITools.getParams("status:0"), "status", "0");
+						Internal.update_password(userID), "status", "0");
 
 			}
 		}
@@ -426,9 +390,7 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String status = iter2.next();
 			APITools.xmlCheck(
-					Mobile.wap_get_mobile(userid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), "status",
+					Mobile.wap_get_mobile(userid), "status",
 					status);
 		}
 	}
@@ -454,16 +416,13 @@ public class Param_Internal {
 			response3 = Mobile.switchMobile(s2, s1, phoneNumber);
 			response4 = Mobile.wapUnBindMobile(phoneNumber);
 			APITools.apiName = "wapAuthMobile";
-			APITools.xmlCheck(response1, APITools.getParams("user1:" + s1)+ APITools.getParams("status:" + "0"), "status", "0");
+			APITools.xmlCheck(response1, "status", "0");
 			APITools.apiName = "wapBindMobile";
-			APITools.xmlCheck(response2, APITools.getParams("user2:" + s2)
-					+ APITools.getParams("status:" + "0"), "status", "0");
+			APITools.xmlCheck(response2,  "status", "0");
 			APITools.apiName = "switchMobile";
-			APITools.xmlCheck(response3, APITools.getParams("user1:" + s1)+APITools.getParams("user2:" + s2)
-					+ APITools.getParams("status:" + "0"), "status", "0");
+			APITools.xmlCheck(response3,  "status", "0");
 			APITools.apiName = "unbindMobile";
-			APITools.xmlCheck(response4,
-					APITools.getParams("phoneNum:" + phoneNumber), "status",
+			APITools.xmlCheck(response4, "status",
 					"0");
 
 		}
@@ -520,9 +479,7 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String status = iter2.next();
 			APITools.xmlCheck(
-					Internal.mailsynchuser(userid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), "status",
+					Internal.mailsynchuser(userid), "status",
 					status);
 		}
 	 }
@@ -538,9 +495,7 @@ public class Param_Internal {
 				String userid = iter1.next();
 				String status = iter2.next();
 				APITools.xmlCheck(
-						Internal.Bindemail(userid),
-						APITools.getParams("userID:" + userid)
-								+ APITools.getParams("status:" + status), "status",
+						Internal.Bindemail(userid), "status",
 						status);
 			}
 	 }
@@ -560,10 +515,7 @@ public class Param_Internal {
 			for (int i = 1; i <= 4; i++) {
 				APITools.xmlCheck(
 						Internal.clearuserinfo(userid, String.valueOf(i)),
-						APITools.getParams("userID:" + userid)
-								+ APITools.getParams("type:"
-										+ String.valueOf(i))
-								+ APITools.getParams("status:" + status),
+					
 								"status",status);
 			}
 		}

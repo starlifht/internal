@@ -39,6 +39,7 @@ public class Log extends ActionSupport{
 //		   request=ServletActionContext.getRequest();
 		
 		}
+	
 	public String doLog() throws Exception {
 		Auto.Auto_HuDun();
 		Properties props = new Properties();        
@@ -50,7 +51,8 @@ public class Log extends ActionSupport{
 		props.setProperty("log4j.appender.CONSOLE.layout.ConversionPattern","[%-5p]%d{yyyy-MM-dd HH:mm:ssS} %c %m%n");
 		props.setProperty("log4j.appender.CONSOLE.File",System.getenv("LOG_FILE"));   
 		PropertyConfigurator.configure(props);
-		log.info(APITools.logInfo);	
+		log.info(APITools.logInfo);
+		log.error(APITools.errorInfo);
 		//response.setContentType("text/html");
 		  //±àÂë
 		 // response.setCharacterEncoding("UTF-8");

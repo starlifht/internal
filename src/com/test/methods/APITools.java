@@ -27,7 +27,7 @@ public class APITools {
 //			}
 //			
 //		}
-	 public static void xmlCheck(String response,String params,String element,String status) throws Exception{//×´Ì¬¼ì²é
+	 public static void xmlCheck(String response,String element,String status) throws Exception{//×´Ì¬¼ì²é
 
 			if(XML.string2Doc(response).getRootElement().getChildText(element).equals(status)){			
 				logInfo=APITools.getInfo(logInfo, APITools.getAPIname(apiName), response);

@@ -3,6 +3,12 @@
 <!DOCTYPE>
 <html>
 <head>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"+ request.getServerName() + ":" + request.getServerPort()+ path + "/";
+	out.println(request.getRealPath("/"));
+%>
+<base href=<%=basePath%>>
 <meta http-equiv="Content-Type" content="text/html; charset=GBK">
 <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
 <style>
@@ -21,13 +27,12 @@ word-wrap: break-word;
 </head>
 <body>
 <div class="content">
-<div id="log">
+<div id="log">66
 <script type="text/javascript">
-				$.post("test_Log_doLog", function(data, textStatus) {
-									this;
-									document.getElementById("log").innerHTML = data;
-										});
-								</script>
+		$.post("test_runCheck_doCheck", function(data, textStatus) {
+		this;
+		document.getElementById("log").innerHTML = data;});	
+</script>
 </div>
 
 </div>

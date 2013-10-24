@@ -41,7 +41,7 @@ static String response=null;
 			APITools.apiName="mobileRegUser";
 			response=Mobile.mobileRegUser();
 			
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "4");
+			APITools.xmlCheck(response, "status", "4");
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
 		}
@@ -58,7 +58,7 @@ static String response=null;
 		try{
 			APITools.apiName="wapGetUserid";
 			response=Mobile.wapGetUserid();
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response, "status", "0");
 
 		}catch(Exception e ){
 			APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -67,7 +67,7 @@ static String response=null;
 		try{
 			APITools.apiName="getMobileInfoByUserid";
 			response=Mobile.getMobileInfoByUserid();
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response, "status", "0");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -76,7 +76,7 @@ static String response=null;
 		try{
 			APITools.apiName="getUseridListByMobile";
 			response=Mobile.getUseridListByMobile();
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response, "status", "0");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -85,7 +85,7 @@ static String response=null;
 			
 			APITools.apiName="regmobiled";
 			response=Mobile.regmobiled("18810606511");
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "4");
+			APITools.xmlCheck(response, "status", "4");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -94,7 +94,7 @@ static String response=null;
 			APITools.apiName="wapAuth";
 			response=Mobile.wapAuth();
 		//	getLogInfo(AutoTools.replaceBlank(response));
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response, "status", "0");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -103,7 +103,7 @@ static String response=null;
 			APITools.apiName="sendJms";
 			response=Mobile.sendJms();
 		//	getLogInfo(AutoTools.replaceBlank(response));
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response, "status", "0");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -112,7 +112,7 @@ static String response=null;
 			APITools.apiName="mobile_gettoken";
 			response=Mobile.mobile_gettoken();
 		//	getLogInfo(AutoTools.replaceBlank(response));
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response, "status", "0");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -121,7 +121,7 @@ static String response=null;
 			APITools.apiName="mobile_authtoken";
 			response=Mobile.mobile_authtoken();
 		//	getLogInfo(AutoTools.replaceBlank(response));
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response, "status", "0");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -130,7 +130,7 @@ static String response=null;
 			APITools.apiName="sendmobileregcaptcha";
 			response=Mobile.sendmobileregcaptcha(APITools.getPhoneNum());
 		//	getLogInfo(AutoTools.replaceBlank(response));
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response, "status", "0");
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
 		}
@@ -138,7 +138,7 @@ static String response=null;
 			APITools.apiName="regmobileuser";
 			response=Mobile.regmobileuser(APITools.getPhoneNum());
 		//	getLogInfo(AutoTools.replaceBlank(response));
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "8");
+			APITools.xmlCheck(response, "status", "8");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -147,7 +147,7 @@ static String response=null;
 			APITools.apiName="regist_mobilecaptcha";
 			response=Mobile.regist_mobilecaptcha(APITools.getPhoneNum());
 		//	getLogInfo(AutoTools.replaceBlank(response));
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "8");
+			APITools.xmlCheck(response, "status", "8");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -156,7 +156,7 @@ static String response=null;
 			APITools.apiName="sendcaptcha";
 			response=Mobile.sendcaptcha();
 		//	getLogInfo(AutoTools.replaceBlank(response));
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "6");
+			APITools.xmlCheck(response, "status", "6");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -165,7 +165,7 @@ static String response=null;
 			APITools.apiName="BindMobile";
 			response=Mobile.BindMobile();
 		//	getLogInfo(AutoTools.replaceBlank(response));
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "1");
+			APITools.xmlCheck(response, "status", "1");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -174,7 +174,7 @@ static String response=null;
 			APITools.apiName="UnbindMobile";
 			response=Mobile.UnbindMobile();
 		//	getLogInfo(AutoTools.replaceBlank(response));
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "1");
+			APITools.xmlCheck(response, "status", "1");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -183,7 +183,7 @@ static String response=null;
 			APITools.apiName="getMobCode";
 			response=Mobile.getMobCode(APITools.getPhoneNum2());
 		//	getLogInfo(AutoTools.replaceBlank(response));
-			APITools.xmlCheck(response,APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response, "status", "0");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -192,7 +192,7 @@ static String response=null;
 			APITools.apiName="authMobCode";
 			response=Mobile.authMobCode();
 		//	getLogInfo(AutoTools.replaceBlank(response));
-			//APITools.xmlCheck(response,APITools.xmlInfo, "status", "0");
+			//APITools.xmlCheck(response, "status", "0");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -355,14 +355,14 @@ static String response=null;
 //========================================================================隆歌方晒=========================================
 		try{//！！！！！！！！！！！！！！！！deletVUsers
 			 APITools.apiName="deletVUsers";		
-		APITools.xmlCheck(Internal.deletVUsers("107607194@vip.sohu.com"),APITools.xmlInfo, "status", "0");
+		APITools.xmlCheck(Internal.deletVUsers("107607194@vip.sohu.com"), "status", "0");
 	}catch(Exception e){
 		APITools.doException(APITools.apiName, APITools.errorInfo, e);
 		}
 		try{//！！！！！！！！！！！！！！！sendemailcaptcha
 			APITools.apiName="sendemailcaptcha";
 		response=Internal.sendemailcaptcha(APITools.getPhoneNum2()+"@qq.com");
-		APITools.xmlCheck(response.trim(), APITools.xmlInfo, "status", "0");
+		APITools.xmlCheck(response.trim(),  "status", "0");
 
 	}catch(Exception e){
 		APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -371,14 +371,14 @@ static String response=null;
 		try{//！！！！！！！！！！！！！！！！getServerToken
 			APITools.apiName="getServerToken";
 			response=Internal.getServerToken();
-			APITools.xmlCheck(response, APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response,  "status", "0");
 	}catch(Exception e){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
 		}
 		try{//！！！！！！！！！！！！！！！！authServerToken
 			APITools.apiName="authServerToken";
 		response=Internal.authServerToken("a33aed52226b5ebf32c2a94e28db4b13");
-		APITools.xmlCheck(response, APITools.xmlInfo, "status", "0");
+		APITools.xmlCheck(response,  "status", "0");
 	}catch(Exception e){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
 		}
@@ -387,35 +387,35 @@ static String response=null;
 		try{
 			APITools.apiName="setOpenBind";
 			response=Internal.setOpenBind();
-			APITools.xmlCheck(response, APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response,  "status", "0");
 		}catch(Exception e){
 						APITools.doException(APITools.apiName, APITools.errorInfo, e);
 			}
 		try{
 			APITools.apiName="deleteOpenBind";
 			response=Internal.deleteOpenBind();
-			APITools.xmlCheck(response, APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response, "status", "0");
 		}catch(Exception e){
 						APITools.doException(APITools.apiName, APITools.errorInfo, e);
 			}
 		try{
 			APITools.apiName="getOpenBindList";
 			response=Internal.getOpenBindList();
-			APITools.xmlCheck(response, APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response,  "status", "0");
 		}catch(Exception e){
 						APITools.doException(APITools.apiName, APITools.errorInfo, e);
 			}
 		try{
 			APITools.apiName="recoverPassword";
 			response=Internal.recoverPassword();
-			APITools.xmlCheck(response, APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response,  "status", "0");
 		}catch(Exception e){
 						APITools.doException(APITools.apiName, APITools.errorInfo, e);
 			}
 		try{
 			APITools.apiName="recoverpwd";
 			response=Internal.recoverpwd();
-			APITools.xmlCheck(response, APITools.xmlInfo, "status", "0");
+			APITools.xmlCheck(response, "status", "0");
 		}catch(Exception e){
 						APITools.doException(APITools.apiName, APITools.errorInfo, e); 
 			}
@@ -425,8 +425,8 @@ static String response=null;
 	public static void main(String[] args) {
 		// Auto.Auto_HuDun();
 		 Auto_HuDun();
-		// Auto_Mobile();
-		//Auto_Internal();
+		 Auto_Mobile();
+		Auto_Internal();
 	
 		//System.out.print(HuDun.logInfo);
 		System.out.println(APITools.logInfo);
