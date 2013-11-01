@@ -1020,7 +1020,7 @@ APITools.xmlInfo=xml.toString();
 		//getUserBlackList();
 		//getServerToken();
 	//	authUser("ppauthtest1@sohu.com","0");
-	registUser("ppauthtest2@sohu.com","200","sohu_test");
+	registUser("ppauthtest10@sohu.com","200","sohu_test");
 	//	//registUser("ppauthtest1@vip.sohu.com","1013","djfi(Y&%ye483y45&%^830934dHisd2y%*HIUGDdii");
 		//getUUidByUserId("107607195@qq.com");
 	}

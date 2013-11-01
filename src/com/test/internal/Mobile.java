@@ -781,7 +781,7 @@ public static String authMobCode() throws Exception{
 
 
 	public static void main(String[] args) throws Exception {
-		getMobCode("18810606513");
+		//getMobCode("18810606513");
 //		mobile_gettoken();
 	//wapAuthMobile(user1,PhoneNum);
 //mobileRegUser();
@@ -796,7 +796,7 @@ public static String authMobCode() throws Exception{
 //		BindMobile();
 //		UnbindMobile();
 		//wapAuth();
-		//sendSms("11110606513","sdfsd");
+		sendSms("18810606513","sdfsd");
 		//regmobiled("18810606511");
 		//getMobileInfoByUserid();
 	//regmobileuser("17710606513");
