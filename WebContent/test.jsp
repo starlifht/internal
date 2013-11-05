@@ -1,24 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=GBK"
     pageEncoding="GBK"%>
-<!DOCTYPE>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"+ request.getServerName() + ":" + request.getServerPort()+ path + "/";
+
+%>
 <style>
-.content {
-	
-	margin: 0 auto;
-	width: 999px;
+#daohang{
+position: absolute;      /*绝对定位*/    
+top: 50%;                  /* 距顶部50%*/    
+left: 50%;                  /* 距左边50%*/    
+  
 }
-
-
 </style>
-<title>test</title>
+<base href=<%=basePath%>>
+<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+
+<title>启动监控</title>
 </head>
 <body>
-<div class="content">
-test dhaha你好
-</div>
-uyiyi
+<div id ="daohang"><a href="test.jsp#" onclick="api()"><img alt="" src="images/Go.png"></a></div>
 </body>
 </html>

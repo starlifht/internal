@@ -6,8 +6,11 @@ import java.util.Date;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+
+import com.mail.SendMail;
 
 
 
@@ -49,6 +52,10 @@ public class APITools {
 			}
 			
 		}
+	 public static void sendMail(){
+			SendMail.sendMail("PassPort监控报警", APITools.errorInfo.toString(), "107607195@qq.com");
+
+	 }
 	public static String subStr(String response,String str){//截任意字符串
 		response=response.trim();
 		int a=response.indexOf(str);
@@ -78,8 +85,8 @@ public class APITools {
 	public static String getIP() throws Exception{//获得IP地址
 		InetAddress addr = InetAddress.getLocalHost();
 		String ip=addr.getHostAddress().toString();//获得本机IP
-		String address=addr.getHostName().toString();//获得本机名称
-		System.out.println(ip);
+		//String address=addr.getHostName().toString();//获得本机名称
+		//System.out.println(ip);//
 		return ip;
 	}
 	public static String getAPIname(String APIname){//格式API名称
@@ -149,7 +156,7 @@ public class APITools {
 //
 //		}
 //		for(int i=0;i<=10;i++){
-		System.out.println(getIP());
+		System.out.println(InetAddress.getByName("internal-test.apps.sohuno.com"));
 		
 	}
 

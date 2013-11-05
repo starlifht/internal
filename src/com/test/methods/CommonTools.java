@@ -21,8 +21,8 @@ public class CommonTools {
 		  HttpURLConnection httpcon=(HttpURLConnection)url.openConnection();
 		//  httpcon.setDoInput(true);
 		 httpcon.setDoOutput(true);
-		  httpcon.setConnectTimeout(5000);
-		  httpcon.setReadTimeout(5000);
+		  httpcon.setConnectTimeout(8000);
+		  httpcon.setReadTimeout(8000);
 		  httpcon.setRequestMethod("GET");
 			String secret = "mkD2h8eT1g9v4";
 			String id = "abcED_BuVlRg4b1cYsJ1t";

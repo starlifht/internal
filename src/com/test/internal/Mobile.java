@@ -796,7 +796,7 @@ public static String authMobCode() throws Exception{
 //		BindMobile();
 //		UnbindMobile();
 		//wapAuth();
-		sendSms("18810606513","sdfsd");
+		System.out.print(authMobCode());
 		//regmobiled("18810606511");
 		//getMobileInfoByUserid();
 	//regmobileuser("17710606513");

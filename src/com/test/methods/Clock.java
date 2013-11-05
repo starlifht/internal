@@ -1,22 +1,13 @@
 package com.test.methods;
 
-import java.awt.Color;
-import java.io.File;
-import java.io.IOException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-
-import jxl.demo.Write;
-
 import com.mail.SendMail;
+import com.test.internal.Auto;
 import com.test.internal.Mobile;
 
 public class Clock {
@@ -28,8 +19,7 @@ public class Clock {
 	public Clock(int num, int second) {
 		this.second = second;
 		this.num = num;
-		timer = new Timer();
-		
+		timer = new Timer();	
 		timer.schedule(new RemindTask(num), 0, // initial delay
 				second * 1000); // subsequent rate
 	}
@@ -41,19 +31,9 @@ public class Clock {
 						String date = new SimpleDateFormat("MM-dd HH:mm:ss")
 								.format(new Date());
 						try {
-							Mobile.sendSms("18810606513", date
-									+ " WARNING : Internal API  EXCEPTION "
-									+ APITools.getIP());				
-						
-	
-							SendMail.sendMail(
-									"WARNING:Internal监控异常退出！",
-									date + " Internal监控已异常中断，请尽快查明原因 "
-											+ APITools.getIP(),
-									"107607195@qq.com");
-
+							Mobile.sendSms("18810606513", date+" WARNING:Internal Monitor Program Crashed! "
+									);					
 						} catch (Exception e) {
-
 							e.printStackTrace();
 						}
 
@@ -75,26 +55,20 @@ public class Clock {
 			if (count< num) {
 			
 				try {
+					Auto.justdoit();
 				
-		
-					
-
 				} catch (Exception e) {
 					e.printStackTrace();
 					try {
-						SendMail.sendMail("WARNING:INTERNAL监控异常！",
-								" Internal接口 " +APITools.getIP()+ e.toString(),
-								"107607195@qq.com");
+						Mobile.sendSms("18810606513", 
+								" PassPort Monitor ERROR!"+e.toString()
+								+ APITools.getIP());
 					} catch (Exception e1) {
 				
 						e1.printStackTrace();
 					}
 				}
-          
-             
-				System.out.println("=================================================");
-				System.out.println("===========Internal接口监控运行中，请勿关闭窗口===========" + count);
-				System.out.println("=================================================");
+
 				count++;
 			} else {
 

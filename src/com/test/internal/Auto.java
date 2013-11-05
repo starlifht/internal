@@ -2,6 +2,7 @@ package com.test.internal;
 
 
 import com.test.methods.APITools;
+import com.test.methods.toLog4j;
 
 
 
@@ -94,7 +95,7 @@ static String response=null;
 			APITools.apiName="wapAuth";
 			response=Mobile.wapAuth();
 		//	getLogInfo(AutoTools.replaceBlank(response));
-			APITools.xmlCheck(response, "status", "0");
+			APITools.xmlCheck(response, "status", "3");
 
 		}catch(Exception e ){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -421,7 +422,14 @@ static String response=null;
 			}
 
 	}
-
+public static void justdoit() throws Exception{
+	APITools.logInfo=new StringBuffer();
+	APITools.errorInfo=new StringBuffer();
+	Auto.Auto_HuDun();
+	Auto.Auto_Mobile();
+	Auto.Auto_Internal();
+	new toLog4j().log();
+}
 	public static void main(String[] args) {
 		// Auto.Auto_HuDun();
 		 Auto_HuDun();

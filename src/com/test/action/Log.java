@@ -41,7 +41,7 @@ public class Log extends ActionSupport{
 		}
 	
 	public String doLog() throws Exception {
-		Auto.Auto_HuDun();
+		//Auto.Auto_HuDun();
 		Properties props = new Properties();        
 		props.setProperty("log4j.rootLogger","INFO,CONSOLE");
 		props.setProperty("log4j.appender.CONSOLE","org.apache.log4j.RollingFileAppender");
@@ -51,16 +51,16 @@ public class Log extends ActionSupport{
 		props.setProperty("log4j.appender.CONSOLE.layout.ConversionPattern","[%-5p]%d{yyyy-MM-dd HH:mm:ssS} %c %m%n");
 		props.setProperty("log4j.appender.CONSOLE.File",System.getenv("LOG_FILE"));   
 		PropertyConfigurator.configure(props);
-		log.info(APITools.logInfo);
-		log.error(APITools.errorInfo);
+		log.info("action≤‚ ‘");
+		//log.error(APITools.errorInfo);
 		//response.setContentType("text/html");
 		  //±‡¬Î
-		 // response.setCharacterEncoding("UTF-8");
-		PrintWriter out=response.getWriter();
-		out.print(new String(APITools.logInfo.toString()));
-		out.print("ssss");
-		out.flush();
-		out.close();
+//		 // response.setCharacterEncoding("UTF-8");
+//		PrintWriter out=response.getWriter();
+//		out.print(new String(APITools.logInfo.toString()));
+//		out.print("ssss");
+//		out.flush();
+//		out.close();
 		return "text";
 	}
 }
