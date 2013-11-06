@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-import com.mail.SendMail;
 
 
 
@@ -33,10 +32,10 @@ public class APITools {
 	 public static void xmlCheck(String response,String element,String status) throws Exception{//状态检查
 
 			if(XML.string2Doc(response).getRootElement().getChildText(element).equals(status)){			
-				logInfo=APITools.getInfo(logInfo, APITools.getAPIname(apiName), response);
+				logInfo=APITools.getInfo(logInfo, APITools.getAPIname(apiName), response+APITools.replaceBlank(APITools.xmlInfo.trim()));
 
 			}else{
-				errorInfo=APITools.getInfo(errorInfo, APITools.getAPIname(apiName), "[ERROR]"+response+"{"+APITools.replaceBlank(APITools.xmlInfo.trim())+"}");
+				errorInfo=APITools.getInfo(errorInfo, APITools.getAPIname(apiName), "[ERROR]"+response+APITools.replaceBlank(APITools.xmlInfo.trim()));
 
 			}
 			
@@ -52,10 +51,7 @@ public class APITools {
 			}
 			
 		}
-	 public static void sendMail(){
-			SendMail.sendMail("PassPort监控报警", APITools.errorInfo.toString(), "107607195@qq.com");
 
-	 }
 	public static String subStr(String response,String str){//截任意字符串
 		response=response.trim();
 		int a=response.indexOf(str);
@@ -104,7 +100,7 @@ public class APITools {
 	public static void doException(String APIname,StringBuffer info,Exception e) 
 	{//处理异常
 		e.printStackTrace();
-		info=getInfo(info,APIname,e.toString());
+		info=getInfo(info,getAPIname(APIname),"[ERROR]"+e.toString());
 
 	}
 

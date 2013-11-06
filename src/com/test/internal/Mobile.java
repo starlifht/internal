@@ -121,7 +121,7 @@ public class Mobile {
 		
 		String rtn_xml = "";
 
-		String str_url = "http://passport.sohu.com/mobile/reguser";
+		String str_url = "http://urlfetch.sce.sohu.com/http/passport.sohu.com/mobile/reguser";
 
 		StringBuffer xml = new StringBuffer();
 		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
@@ -580,7 +580,7 @@ public class Mobile {
 	String rtn_xml = "";
 
 	// String str_url =
-	String str_url = "http://passport.sohu.com/mobile/regmobileuser";
+	String str_url = "http://urlfetch.sce.sohu.com/http/passport.sohu.com/mobile/regmobileuser";
 
 	StringBuffer xml = new StringBuffer();
 	xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
@@ -774,7 +774,7 @@ public class Mobile {
 					return rtn_xml;
 					}
 public static String authMobCode() throws Exception{
-	String rtn=CommonTools.HttpGet("https://passport.sohu.com/act/authMobCode?mobile=18810606513&appid=9998&captcha=43533");
+	String rtn=CommonTools.HttpGet("http://urlfetch.sce.sohu.com/http/passport.sohu.com/act/authMobCode?mobile=18810606513&appid=9998&captcha=43533");
 	return rtn;
 	
 }

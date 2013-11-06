@@ -7,8 +7,6 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import com.mail.SendMail;
-import com.test.internal.Auto;
 import com.test.methods.APITools;
 
 	public class toLog4j {
@@ -18,10 +16,8 @@ import com.test.methods.APITools;
 		 */
 		private final Logger log = Logger.getLogger(toLog4j.class);
 
-		public void log() throws Exception {
-			new Redis().setKey("loginfo", APITools.logInfo.toString());
-			new Redis().expire("loginfo", 36000000);
-		
+		public void log(String loginfo) throws Exception {
+
 			Properties props = new Properties();        
 			props.setProperty("log4j.rootLogger","INFO,CONSOLE");
 			props.setProperty("log4j.appender.CONSOLE","org.apache.log4j.RollingFileAppender");
@@ -33,19 +29,18 @@ import com.test.methods.APITools;
 			PropertyConfigurator.configure(props);
 		
 			
-			//log.info(APITools.logInfo);
+			log.info(loginfo);
 			
-			if(APITools.errorInfo.length()!=0){
-				log.info(APITools.errorInfo);
-				new Redis().setKey("errorinfo", APITools.errorInfo.toString());
-				new Redis().expire("errorinfo", 36000000);
 			}
-		}
+		
 	
 
-	public static void main(String[] args) {
-
-
+	public static void main(String[] args) throws Exception {
+//new Redis().setKey("ss", "00");
+//new Redis().expire("ss", 10);
+if(new Redis().exits("errorinfo")){
+	System.out.print("sdf");
+}
 	}
 
 }

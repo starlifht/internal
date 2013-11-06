@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.mail.SendMail;
 import com.test.internal.Auto;
 import com.test.internal.Mobile;
 
@@ -61,8 +60,7 @@ public class Clock {
 					e.printStackTrace();
 					try {
 						Mobile.sendSms("18810606513", 
-								" PassPort Monitor ERROR!"+e.toString()
-								+ APITools.getIP());
+								" PassPort Monitor ERROR!"+e.toString());
 					} catch (Exception e1) {
 				
 						e1.printStackTrace();

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=GBK"
     pageEncoding="GBK"%>
+<!DOCTYPE html>
 <html>
 <head>
 <%
@@ -14,11 +15,11 @@
 <style>
 .content {
 	
-	margin: 0 auto;
-	width: 1300px;
+	margin: auto 40px;
+	
 }
 #log {
-word-wrap: normal|break-word;
+word-wrap:normal|break-word; 
 	white-space: pre;
 }
 
@@ -27,7 +28,7 @@ word-wrap: normal|break-word;
 </head>
 <body>
 <div class="content">
-<font color="gray">PassPort监控正在running</font><img alt="" src="images/pro.gif">
+<h3><font color="gray">PassPort监控正在running</font><img alt="" src="images/pro.gif"></h3>
 <div id="log">
 <script type="text/javascript">
 Push();

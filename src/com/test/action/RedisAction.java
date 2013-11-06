@@ -1,19 +1,16 @@
 package com.test.action;
 
-import java.io.IOException;
+
 import java.io.PrintWriter;
-import java.net.InetAddress;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.mail.SendMail;
 import com.opensymphony.xwork2.ActionSupport;
-import com.test.internal.Mobile;
-import com.test.methods.APITools;
 import com.test.methods.Redis;
+import com.test.methods.SendCloud;
 
 public class RedisAction extends ActionSupport{
 
@@ -37,11 +34,16 @@ public class RedisAction extends ActionSupport{
 		return "text";
 		
 	}
-	public String getLog() throws Exception{		
+	public String getLog() throws Exception{
 		String loginfo =new Redis().getKey("loginfo");
-		String errorinfo="<font color=\"red\">"+new Redis().getKey("errorinfo")+"</font>";
+		String log=loginfo;
+		if(new Redis().exits("errorinfo")){
+			String errorinfo="<font color=\"red\">"+new Redis().getKey("errorinfo")+"</font>";
+			log=errorinfo+loginfo;
+		}
+		
 		PrintWriter out=response.getWriter();		
-		out.print(errorinfo+loginfo);	
+		out.print(log);	
 		out.flush();
 		out.close();		
 		return "text";

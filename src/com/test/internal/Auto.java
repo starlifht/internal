@@ -2,6 +2,8 @@ package com.test.internal;
 
 
 import com.test.methods.APITools;
+import com.test.methods.Redis;
+import com.test.methods.SendCloud;
 import com.test.methods.toLog4j;
 
 
@@ -428,7 +430,19 @@ public static void justdoit() throws Exception{
 	Auto.Auto_HuDun();
 	Auto.Auto_Mobile();
 	Auto.Auto_Internal();
-	new toLog4j().log();
+	new Redis().setKey("loginfo", APITools.logInfo.toString());
+	new Redis().expire("loginfo", 36000);
+	
+	if(APITools.errorInfo.length()!=0&&APITools.errorInfo!=null){
+		new SendCloud().sendMail("154985201@qq.com", "PassPort¼à¿Ø±¨¾¯", APITools.errorInfo.toString());
+		new SendCloud().sendMail("446204722@qq.com", "PassPort¼à¿Ø±¨¾¯", APITools.errorInfo.toString());
+		new toLog4j().log(APITools.errorInfo.toString());
+		if(new Redis().exits("errorinfo")){
+			new Redis().append("errorinfo", APITools.errorInfo.toString());
+		}else{
+			new Redis().setKey("errorinfo", APITools.errorInfo.toString());
+			new Redis().expire("errorinfo",24*3600*4);
+		}}
 }
 	public static void main(String[] args) {
 		// Auto.Auto_HuDun();
