@@ -380,7 +380,7 @@ static String response=null;
 		}
 		try{//！！！！！！！！！！！！！！！！authServerToken
 			APITools.apiName="authServerToken";
-		response=Internal.authServerToken("a33aed52226b5ebf32c2a94e28db4b13");
+		response=Internal.authServerToken("bbede89c0ca38d1c890c885d17feb131");
 		APITools.xmlCheck(response,  "status", "0");
 	}catch(Exception e){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -430,30 +430,41 @@ public static void justdoit() throws Exception{
 	Auto.Auto_HuDun();
 	Auto.Auto_Mobile();
 	Auto.Auto_Internal();
+	try{
 	new Redis().setKey("loginfo", APITools.logInfo.toString());
 	new Redis().expire("loginfo", 36000);
-	
+	}catch(Exception e){
+		Mobile.sendSms("18810606513", 
+				" PassPort Monitor ERROR!"+e.toString());
+	}
 	if(APITools.errorInfo.length()!=0&&APITools.errorInfo!=null){
+		try{
 		new SendCloud().sendMail("154985201@qq.com", "PassPort酌陣烏少", APITools.errorInfo.toString());
 		new SendCloud().sendMail("446204722@qq.com", "PassPort酌陣烏少", APITools.errorInfo.toString());
+		}
+		catch(Exception e){
+			Mobile.sendSms("18810606513", 
+					" PassPort Monitor ERROR!"+e.toString());
+		}
+		try{
 		new toLog4j().log(APITools.errorInfo.toString());
-		if(new Redis().exits("errorinfo")){
-			new Redis().append("errorinfo", APITools.errorInfo.toString());
-		}else{
-			new Redis().setKey("errorinfo", APITools.errorInfo.toString());
-			new Redis().expire("errorinfo",24*3600*4);
-		}}
+			
+		}catch(Exception e){
+			Mobile.sendSms("18810606513", 
+					" PassPort Monitor ERROR!"+e.toString());
+		}
+	
+			new Redis().infoToRedis(System.currentTimeMillis());
+			
+		}
 }
 	public static void main(String[] args) {
 		// Auto.Auto_HuDun();
-		 Auto_HuDun();
-		 Auto_Mobile();
-		Auto_Internal();
 	
 		//System.out.print(HuDun.logInfo);
-		System.out.println(APITools.logInfo);
+		System.out.println(System.currentTimeMillis());
 		System.out.println("===============ERROR==============");
-		System.out.println(APITools.errorInfo);
+		
 	}
 
 }

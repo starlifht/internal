@@ -1,14 +1,17 @@
 package com.test.methods;
 
 
-import net.sf.json.JSONArray;
+import java.util.Iterator;
+import java.util.Set;
 
+import net.sf.json.JSONArray;
 import redis.clients.jedis.Jedis;
 
 public class Redis {
-	private  Jedis jedis ;
+	private Jedis jedis ;
 	private String ip;
 	private String port;
+	
 	public Redis() throws Exception{
 		getIPandPort() ;
 		 jedis = new Jedis(ip, Integer.valueOf(port)) ;
@@ -46,10 +49,52 @@ public class Redis {
 	public void append(String key,String value){
 		jedis.append(key, value);
 	}
+	public void infoToRedis(long time){
+		String s=String.valueOf(time);
+		jedis.set(s, APITools.errorInfo.toString());
+		jedis.expire(s,24*3600*7);
+		jedis.sadd("error",s);
+	}
+	public String infoFromRedis(){
+		  Set set = jedis.smembers("error"); 
+		  StringBuffer sb=new StringBuffer();
+		  Iterator t1=set.iterator() ;
+		  while(t1.hasNext()){
+		   Object obj1=t1.next();
+		   if(jedis.exists(obj1.toString())){
+			   System.out.print(obj1);
+		   sb.append(jedis.get(obj1.toString()));}
+		  }
+		
+		
+		return sb.toString();
+		
+	}
 	public static void main(String[] args) throws Exception {
 		//String s=new FileOp().readFile("d:\\error.log").toString();
 		//new Redis().setKey("runstate", "0");
 		//new Redis().jedis.del("errorinfo");
-		System.out.print(new Redis().jedis.ttl("errorinfo"));
+//		Jedis jedis=new Redis().jedis;
+//		jedis.sadd("testSet", "s1");
+//		  jedis.sadd("testSet", "s2");
+//		  jedis.sadd("testSet", "s3");
+//		  jedis.sadd("testSet", "s4");
+//		  jedis.sadd("testSet", "s5");
+//		  
+//		  //SREM key member移除集合中的member元素。
+//		 jedis.srem("testSet", "s5");
+//		  
+//		  //SMEMBERS key返回集合key中的所有成员。
+//		  Set set = jedis.smembers("testSet1");
+//		  
+//		  Iterator t1=set.iterator() ;
+//		  while(t1.hasNext()){
+//		   Object obj1=t1.next();
+//		   System.out.println(obj1);
+//		  }
+		System.out.println(new Redis().infoFromRedis());
+		new Redis().jedis.srem("error","2342552347255");
+		//new Redis().jedis.flushAll();
+		  
 	}
 }

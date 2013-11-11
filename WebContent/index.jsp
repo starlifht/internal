@@ -19,16 +19,29 @@
 	
 }
 #log {
-word-wrap:normal|break-word; 
-	white-space: pre;
+word-wrap:normal; 
+	white-space:pre;
 }
-
+h3{
+color:gray;
+}
+small{
+font-size:11px;
+color:gray;
+}
+#pro{
+background:url("images/pro.gif");
+height:9px;
+width:500px;
+}
 </style>
 <title>Internal监控服务</title>
 </head>
 <body>
 <div class="content">
-<h3><font color="gray">PassPort监控正在running</font><img alt="" src="images/pro.gif"></h3>
+<h3>PassPort监控正在Running......</h3>
+<div id="pro"></div>
+<small>Sohu@CopyRight20131111</small>
 <div id="log">
 <script type="text/javascript">
 Push();

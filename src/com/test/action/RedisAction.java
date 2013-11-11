@@ -37,8 +37,9 @@ public class RedisAction extends ActionSupport{
 	public String getLog() throws Exception{
 		String loginfo =new Redis().getKey("loginfo");
 		String log=loginfo;
-		if(new Redis().exits("errorinfo")){
-			String errorinfo="<font color=\"red\">"+new Redis().getKey("errorinfo")+"</font>";
+		String errorinfo=new Redis().infoFromRedis();
+		if(errorinfo.length()!=0&&errorinfo!=null){
+			 errorinfo="<font color=\"red\">"+errorinfo+"</font>";
 			log=errorinfo+loginfo;
 		}
 		
