@@ -1,9 +1,9 @@
 package com.test.methods;
 
 
-import java.util.Iterator;
-import java.util.Set;
 
+import java.util.List;
+import java.util.TreeSet;
 import net.sf.json.JSONArray;
 import redis.clients.jedis.Jedis;
 
@@ -11,7 +11,6 @@ public class Redis {
 	private Jedis jedis ;
 	private String ip;
 	private String port;
-	
 	public Redis() throws Exception{
 		getIPandPort() ;
 		 jedis = new Jedis(ip, Integer.valueOf(port)) ;
@@ -53,21 +52,41 @@ public class Redis {
 		String s=String.valueOf(time);
 		jedis.set(s, APITools.errorInfo.toString());
 		jedis.expire(s,24*3600*7);
-		jedis.sadd("error",s);
+		jedis.lpush("errorlist",s);
 	}
 	public String infoFromRedis(){
-		  Set set = jedis.smembers("error"); 
 		  StringBuffer sb=new StringBuffer();
-		  Iterator t1=set.iterator() ;
-		  while(t1.hasNext()){
-		   Object obj1=t1.next();
-		   if(jedis.exists(obj1.toString())){
-			   System.out.print(obj1);
-		   sb.append(jedis.get(obj1.toString()));}
-		  }
-		
+			 List<String> list = jedis.lrange("errorlist", 0, -1);
+			  for(int i=0;i<list.size();i++){
+				  String s=list.get(i);
+				  if(jedis.exists(s)){					
+				   sb.append(jedis.get(s));
+				   }else{
+					   jedis.lrem("errorlist", i, s);
+				   }
+			  }
 		
 		return sb.toString();
+		
+	}
+	public void test(){
+		jedis.lpush("rrr1", "1");
+		jedis.lpush("rrr1", "2");
+		jedis.lpush("rrr1", "3");
+		jedis.lpush("rrr1", "4");
+		jedis.lpush("rrr1", "5");
+		jedis.lpush("rrr1", "6");
+		  StringBuffer sb=new StringBuffer();
+		 List<String> list = jedis.lrange("rrr1", 0, -1);
+		  for(int i=0;i<list.size();i++){
+			  String s=list.get(i);
+			  if(jedis.exists(s)){
+				
+			   sb.append(jedis.get(s));}else{
+				   jedis.lrem("errorlist", i, s);
+			   }
+		  }
+		  
 		
 	}
 	public static void main(String[] args) throws Exception {
@@ -92,8 +111,8 @@ public class Redis {
 //		   Object obj1=t1.next();
 //		   System.out.println(obj1);
 //		  }
-		System.out.println(new Redis().infoFromRedis());
-		new Redis().jedis.srem("error","2342552347255");
+		new Redis().test();
+	
 		//new Redis().jedis.flushAll();
 		  
 	}
