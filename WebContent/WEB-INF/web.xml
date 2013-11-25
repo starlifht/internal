@@ -7,6 +7,10 @@ id="internal" version="2.4">
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    <!-- Listeners -->
+ <listener>
+        <listener-class>com.test.listener.ApplicationWatch</listener-class>
+    </listener> 
     <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>com.test.methods.EncodingFilter</filter-class>
@@ -30,5 +34,6 @@ id="internal" version="2.4">
     <filter-mapping>
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
+     </filter-mapping>
+      
 </web-app>

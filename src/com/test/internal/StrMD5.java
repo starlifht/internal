@@ -1,4 +1,4 @@
-package com.test.methods;
+package com.test.internal;
 
 /*
  * Created on 2005-3-29

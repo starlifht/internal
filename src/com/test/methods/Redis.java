@@ -37,10 +37,7 @@ public class Redis {
 		String s=CommonTools.HttpGet("http://sceapi.apps.sohuno.com/api/redis/release?uid=1008");
 		JSONArray jsonArray = JSONArray.fromObject(s);
 		ip =jsonArray.getJSONObject(0).get("ip").toString();
-		port=jsonArray.getJSONObject(0).get("port").toString();
-	
-		
-		
+		port=jsonArray.getJSONObject(0).get("port").toString();	
 	}
 	public boolean exits(String key){
 			return jedis.exists(key);
@@ -91,7 +88,7 @@ public class Redis {
 	}
 	public static void main(String[] args) throws Exception {
 		//String s=new FileOp().readFile("d:\\error.log").toString();
-		//new Redis().setKey("runstate", "0");
+		new Redis().setKey("loginfo", "≤‚ ‘test");
 		//new Redis().jedis.del("errorinfo");
 //		Jedis jedis=new Redis().jedis;
 //		jedis.sadd("testSet", "s1");
@@ -111,9 +108,14 @@ public class Redis {
 //		   Object obj1=t1.next();
 //		   System.out.println(obj1);
 //		  }
-		new Redis().test();
-	
-		//new Redis().jedis.flushAll();
+	//	new Redis().test();
+	//
+		String s=CommonTools.HttpGet("http://sceapi.apps.sohuno.com/api/redis/release?uid=1008");
+		JSONArray jsonArray = JSONArray.fromObject(s);
+		String ip =jsonArray.getJSONObject(0).get("ip").toString();
+		System.out.println(ip);
+		System.out.print(new Redis().getKey("runstate"));
+		//port=jsonArray.getJSONObject(0).get("port").toString();	
 		  
 	}
 }

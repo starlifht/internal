@@ -31,6 +31,31 @@ static String response=null;
 		} catch (Exception e) {
 			APITools.doException(APITools.apiName, APITools.errorInfo, e);
 		}
+
+		//========================================================================隆歌方晒=========================================
+		try{
+			APITools.apiName="isbind";
+			response=HuDun.isbind("hudunbind@sohu.com");
+			APITools.xmlCheck(response, "status", "0");
+
+		}catch(Exception e ){
+					APITools.doException(APITools.apiName, APITools.errorInfo, e);
+		}
+
+				try{//！！！！！！！！！！！！！！！！sendSToken
+					 APITools.apiName="sendSToken";		
+					 response=HuDun.sendSToken("hudunbind@sohu.com",APITools.getPhoneNum2());
+						APITools.xmlCheck(response, "status", "0");
+						}catch(Exception e){
+				APITools.doException(APITools.apiName, APITools.errorInfo, e);
+				}
+				try{//！！！！！！！！！！！！！！！！verifySToken
+					 APITools.apiName="verifySToken";		
+					 response=HuDun.verifySToken("hudunbind@sohu.com");
+						APITools.xmlCheck(response, "status", "1");			
+						}catch(Exception e){
+				APITools.doException(APITools.apiName, APITools.errorInfo, e);
+				}
 	}
 	// ****************************************Mobile*************************************************
 	public static void Auto_Mobile() {

@@ -41,7 +41,7 @@ width:500px;
 <div class="content">
 <h3>PassPort¼à¿ØÕýÔÚRunning......</h3>
 <div id="pro"></div>
-<small>Sohu@CopyRight20131112</small>
+<small>Sohu@CopyRight20131121</small>
 <div id="log">
 <script type="text/javascript">
 Push();
