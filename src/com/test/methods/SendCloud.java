@@ -17,7 +17,7 @@ import org.apache.http.util.EntityUtils;
 
 public class SendCloud {
  @SuppressWarnings("unchecked")
-public void sendMail(String to,String subject,String content) throws Exception{
+public static void sendMail(String to,String subject,String content) throws Exception{
 	 String url = "http://urlfetch.sce.sohu.com/http/sendcloud.sohu.com/webapi/mail.send.xml";
 		HttpClient httpclient = new DefaultHttpClient();
 		// httpclient = wrapHttpClient(httpclient);

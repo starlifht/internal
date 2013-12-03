@@ -3,12 +3,18 @@ package com.test.methods;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+
+import com.test.internal.PPTools;
+
+
 
 
 
@@ -32,10 +38,10 @@ public class APITools {
 	 public static void xmlCheck(String response,String element,String status) throws Exception{//状态检查
 
 			if(XML.string2Doc(response).getRootElement().getChildText(element).equals(status)){			
-				logInfo=APITools.getInfo(logInfo, APITools.getAPIname(apiName), response+APITools.replaceBlank(APITools.xmlInfo.trim()));
+				APITools.getInfo(logInfo, APITools.getAPIname(apiName), response+APITools.replaceBlank(APITools.xmlInfo.trim()));
 
 			}else{
-				errorInfo=APITools.getInfo(errorInfo, APITools.getAPIname(apiName), "[ERROR]"+response+APITools.replaceBlank(APITools.xmlInfo.trim()));
+				APITools.getInfo(errorInfo, APITools.getAPIname(apiName), "[ERROR]"+response+APITools.replaceBlank(APITools.xmlInfo.trim()));
 
 			}
 			
@@ -43,10 +49,10 @@ public class APITools {
 	 public static void jsonCheck(String response,String params,String status) throws Exception{//状态检查
 
 			if(APITools.toJson(response).get("status").equals(status)){			
-				logInfo=APITools.getInfo(logInfo, APITools.getAPIname(apiName), response+"{"+params+"}");
+				APITools.getInfo(logInfo, APITools.getAPIname(apiName), response+"{"+params+"}");
 
 			}else{
-				errorInfo=APITools.getInfo(errorInfo, APITools.getAPIname(apiName), "[ERROR]"+response+"{"+params+"}");
+				APITools.getInfo(errorInfo, APITools.getAPIname(apiName), "[ERROR]"+response+"{"+params+"}");
 
 			}
 			
@@ -92,15 +98,15 @@ public class APITools {
 		return String.format(String.format("(%s)", params));
 	}
 
-	public static StringBuffer getInfo(StringBuffer info,String APIname,String response){//拼凑log信息
+	public static void getInfo(StringBuffer info,String APIname,String response){//拼凑log信息
 		response=response.replaceAll("/", "").replaceAll("><", "|").replaceAll("<", "|").replaceAll(">", "|");
 		String date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());		
-		return info.append(date+" "+APIname+" "+response).append(System.getProperty("line.separator"));			
+		 info.append(date+" "+APIname+" "+response).append(System.getProperty("line.separator"));			
 	}
 	public static void doException(String APIname,StringBuffer info,Exception e) 
 	{//处理异常
 		e.printStackTrace();
-		info=getInfo(info,getAPIname(APIname),"[ERROR]"+e.toString());
+		getInfo(info,getAPIname(APIname),"[ERROR]"+e.toString());
 
 	}
 
@@ -144,15 +150,32 @@ public class APITools {
 	public static String getDate(){
 		return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 	}
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws Exception {
-//		int i = 0;
-//		while (i < 100) {
-//			System.out.println(getPhoneNum());
-//			i++;
-//
-//		}
-//		for(int i=0;i<=10;i++){
-		System.out.println(InetAddress.getByName("internal-test.apps.sohuno.com"));
+	JSONObject josn=new JSONObject();
+	Map <String, String> ingredients = new HashMap <String, String>();
+
+	//josn.put("ingredients", ingredients);
+	 String userid="6A04A49CA00227FFEB9090A3B20F44AD@qq.sohu.com";
+//	  String appid="1120";
+//	  String appkey="4xoG%9>2Z67iL5]OdtBq$l#>DfW@TY";
+	  String appid="1044";
+	  String appkey="4xoG%9>2Z67iL5]OdtBq$l#>DfW@TY";
+	  String ct=String.valueOf(System.currentTimeMillis());
+	  String code=PPTools.md5(userid + appid + appkey + ct);
+	
+	  ingredients.put("userid",userid);
+	  ingredients.put("openid", "6A04A49CA00227FFEB9090A3B20F44AD@qq.sohu.com");
+	  ingredients.put("appid", appid);
+      // parameterMap.put("app_key", new String[]{"test"});
+      // parameterMap.put("product_id", new String[]{"9999"});
+	  ingredients.put("ct", ct);
+	  ingredients.put("code", code);
+	josn.putAll(ingredients);
+	System.out.println(josn);
+	String response=CommonTools.createXMLURLConnection("http://10.11.49.38:8007/openlogin/api/token/get", josn.toJSONString());
+	System.out.println(response);
+		//System.out.println(InetAddress.getByName("internal-test.apps.sohuno.com"));
 		
 	}
 

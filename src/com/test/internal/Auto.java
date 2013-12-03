@@ -74,9 +74,11 @@ static String response=null;
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
 		}
 		try{
-			APITools.apiName="sendSms";
+			APITools.apiName="[sendSms]";
 			response=Mobile.sendSms("11110606513","Happy Everyday!");
-			if(!response.trim().equals("success")){
+			if(response.trim().equals("success")){
+				APITools.getInfo(APITools.logInfo, APITools.apiName, response);
+			}else{
 				APITools.getInfo(APITools.errorInfo, APITools.apiName, response);
 			}
 		}catch(Exception e ){
@@ -464,8 +466,8 @@ public static void justdoit() throws Exception{
 	}
 	if(APITools.errorInfo.length()!=0&&APITools.errorInfo!=null){
 		try{
-		new SendCloud().sendMail("154985201@qq.com", "PassPort¼à¿Ø±¨¾¯", APITools.errorInfo.toString());
-		new SendCloud().sendMail("446204722@qq.com", "PassPort¼à¿Ø±¨¾¯", APITools.errorInfo.toString());
+		SendCloud.sendMail("154985201@qq.com", "PassPort¼à¿Ø±¨¾¯", APITools.errorInfo.toString());
+		SendCloud.sendMail("446204722@qq.com", "PassPort¼à¿Ø±¨¾¯", APITools.errorInfo.toString());
 		}
 		catch(Exception e){
 			Mobile.sendSms("18810606513", 

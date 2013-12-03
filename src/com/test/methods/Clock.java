@@ -22,7 +22,9 @@ public class Clock {
 		timer.schedule(new RemindTask(num), 0, // initial delay
 				second * 1000); // subsequent rate
 	}
-
+    public static void runClock(){
+    	
+    }
 	public static void doShutDownWork() {
 		Runtime.getRuntime().addShutdownHook(new Thread() {// 程序异常退出处理
 					@Override

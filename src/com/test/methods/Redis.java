@@ -88,8 +88,8 @@ public class Redis {
 	}
 	public static void main(String[] args) throws Exception {
 		//String s=new FileOp().readFile("d:\\error.log").toString();
-		new Redis().setKey("loginfo", "≤‚ ‘test");
-		//new Redis().jedis.del("errorinfo");
+		//new Redis().setKey("loginfo", "≤‚ ‘test");
+		new Redis().jedis.del("errorlist");
 //		Jedis jedis=new Redis().jedis;
 //		jedis.sadd("testSet", "s1");
 //		  jedis.sadd("testSet", "s2");
@@ -110,11 +110,11 @@ public class Redis {
 //		  }
 	//	new Redis().test();
 	//
-		String s=CommonTools.HttpGet("http://sceapi.apps.sohuno.com/api/redis/release?uid=1008");
-		JSONArray jsonArray = JSONArray.fromObject(s);
-		String ip =jsonArray.getJSONObject(0).get("ip").toString();
-		System.out.println(ip);
-		System.out.print(new Redis().getKey("runstate"));
+//		String s=CommonTools.HttpGet("http://sceapi.apps.sohuno.com/api/redis/release?uid=1008");
+//		JSONArray jsonArray = JSONArray.fromObject(s);
+//		String ip =jsonArray.getJSONObject(0).get("ip").toString();
+//		System.out.println(ip);
+//		System.out.print(new Redis().getKey("runstate"));
 		//port=jsonArray.getJSONObject(0).get("port").toString();	
 		  
 	}

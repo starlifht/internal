@@ -2,7 +2,6 @@ package com.test.methods;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -143,7 +142,10 @@ public static String HttpGet(String str_url) throws Exception{
 	return response;
 	
 }
-	
+public static void main(String[] arg0) throws Exception{
+	String s =CommonTools.HttpGet("http://10.10.124.105:8005/appstore/ios/newest");
+	System.out.println(s);
+}
 }
 
 

@@ -14,15 +14,7 @@ public class Mobile {
 	 static StringBuffer errorInfo=new StringBuffer();
 	 public static String apiName=null;
 	 static StringBuffer logInfo=new StringBuffer();
-	 public static void check(String response,String params,String status) throws Exception{//×´Ì¬¼ì²é
-			logInfo=APITools.getInfo(logInfo, APITools.getAPIname(apiName), response+"{"+params+"}");
-
-			if(!XML.string2Doc(response).getRootElement().getChildText("status").equals(status)){			
-			
-				errorInfo=APITools.getInfo(errorInfo, APITools.getAPIname(apiName), response+"{"+params+"}");
-			}
-			
-		}
+	
 	static String PhoneNum=APITools.getPhoneNum();
 	static String user1="online00015@sohu.com";
 	static String user2="online00016@sohu.com";
