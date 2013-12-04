@@ -4,7 +4,9 @@ package com.test.internal;
 
 import java.util.HashMap;
 
-import org.json.simple.JSONObject;
+
+
+import net.sf.json.JSONObject;
 
 import com.test.methods.APITools;
 import com.test.methods.CommonTools;
@@ -843,11 +845,12 @@ APITools.xmlInfo=xml.toString();
 		map.put("update_version", "2");
 		String str_url = Params.DOMAIN+"interface/monitorblacklist";
 		JSONObject  jsonObject = new JSONObject();
-		String s =jsonObject.toJSONString(map);
-
-		String rtn = CommonTools.createURLConnection(str_url,s, "application/json");
-	
+		jsonObject.putAll(map);
+		String s=jsonObject.toString();
 		System.out.println(s);
+		String rtn = CommonTools.createXMLURLConnection(str_url,s);
+	
+		
 		System.out.println("**********************************getUserBlackListTest**********************************");
 		System.out.println(rtn);
 		return rtn;
@@ -1017,11 +1020,14 @@ APITools.xmlInfo=xml.toString();
 		//activate("ppauthtest1@focus.cn");
 //		getUidByUserid("ppauthtest2@sohu.com");
 //		getUUidByUserId("ppauthtest2@sohu.com");
-		//getUserBlackList();
+		getUserBlackList();
 		//getServerToken();
+		String s =getCookieInfo("107607195@qq.com");
+		net.sf.json.JSONObject jj=APITools.toJson(s);
+		System.out.print(jj.get("status"));
 	//	authUser("ppauthtest1@sohu.com","0");
-		getServerToken();
-		authServerToken("bbede89c0ca38d1c890c885d17feb131");
+//		getServerToken();
+//		authServerToken("bbede89c0ca38d1c890c885d17feb131");
 	//	//registUser("ppauthtest1@vip.sohu.com","1013","djfi(Y&%ye483y45&%^830934dHisd2y%*HIUGDdii");
 		//getUUidByUserId("107607195@qq.com");
 	}

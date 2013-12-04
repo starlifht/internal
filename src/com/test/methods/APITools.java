@@ -9,8 +9,10 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+
+
+
+import net.sf.json.JSONObject;
 
 import com.test.internal.PPTools;
 
@@ -38,21 +40,21 @@ public class APITools {
 	 public static void xmlCheck(String response,String element,String status) throws Exception{//状态检查
 
 			if(XML.string2Doc(response).getRootElement().getChildText(element).equals(status)){			
-				APITools.getInfo(logInfo, APITools.getAPIname(apiName), response+APITools.replaceBlank(APITools.xmlInfo.trim()));
+				APITools.getInfo(logInfo, apiName, response+APITools.replaceBlank(APITools.xmlInfo.trim()));
 
 			}else{
-				APITools.getInfo(errorInfo, APITools.getAPIname(apiName), "[ERROR]"+response+APITools.replaceBlank(APITools.xmlInfo.trim()));
+				APITools.getInfo(errorInfo, apiName, "[ERROR]"+response+APITools.replaceBlank(APITools.xmlInfo.trim()));
 
 			}
 			
 		}
-	 public static void jsonCheck(String response,String params,String status) throws Exception{//状态检查
+	 public static void jsonCheck(String response,String element,String status) throws Exception{//状态检查
 
-			if(APITools.toJson(response).get("status").equals(status)){			
-				APITools.getInfo(logInfo, APITools.getAPIname(apiName), response+"{"+params+"}");
+			if(APITools.toJson(response).get(element).equals(status)){			
+				APITools.getInfo(logInfo, APITools.apiName, response);
 
 			}else{
-				APITools.getInfo(errorInfo, APITools.getAPIname(apiName), "[ERROR]"+response+"{"+params+"}");
+				APITools.getInfo(errorInfo, APITools.apiName, "[ERROR]"+response);
 
 			}
 			
@@ -101,7 +103,7 @@ public class APITools {
 	public static void getInfo(StringBuffer info,String APIname,String response){//拼凑log信息
 		response=response.replaceAll("/", "").replaceAll("><", "|").replaceAll("<", "|").replaceAll(">", "|");
 		String date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());		
-		 info.append(date+" "+APIname+" "+response).append(System.getProperty("line.separator"));			
+		 info.append(date+" "+APITools.getAPIname(APIname)+" "+response).append(System.getProperty("line.separator"));			
 	}
 	public static void doException(String APIname,StringBuffer info,Exception e) 
 	{//处理异常
@@ -144,37 +146,15 @@ public class APITools {
 
 	}
 	public static JSONObject toJson(String s){//转json
-		return (JSONObject) JSONValue.parse(s);
+		return JSONObject.fromObject(s);
 		
 	}
 	public static String getDate(){
 		return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 	}
-	@SuppressWarnings("unchecked")
-	public static void main(String[] args) throws Exception {
-	JSONObject josn=new JSONObject();
-	Map <String, String> ingredients = new HashMap <String, String>();
 
-	//josn.put("ingredients", ingredients);
-	 String userid="6A04A49CA00227FFEB9090A3B20F44AD@qq.sohu.com";
-//	  String appid="1120";
-//	  String appkey="4xoG%9>2Z67iL5]OdtBq$l#>DfW@TY";
-	  String appid="1044";
-	  String appkey="4xoG%9>2Z67iL5]OdtBq$l#>DfW@TY";
-	  String ct=String.valueOf(System.currentTimeMillis());
-	  String code=PPTools.md5(userid + appid + appkey + ct);
-	
-	  ingredients.put("userid",userid);
-	  ingredients.put("openid", "6A04A49CA00227FFEB9090A3B20F44AD@qq.sohu.com");
-	  ingredients.put("appid", appid);
-      // parameterMap.put("app_key", new String[]{"test"});
-      // parameterMap.put("product_id", new String[]{"9999"});
-	  ingredients.put("ct", ct);
-	  ingredients.put("code", code);
-	josn.putAll(ingredients);
-	System.out.println(josn);
-	String response=CommonTools.createXMLURLConnection("http://10.11.49.38:8007/openlogin/api/token/get", josn.toJSONString());
-	System.out.println(response);
+	public static void main(String[] args) throws Exception {
+
 		//System.out.println(InetAddress.getByName("internal-test.apps.sohuno.com"));
 		
 	}

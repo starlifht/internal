@@ -8,8 +8,24 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.CoreConnectionPNames;
+import org.apache.http.util.EntityUtils;
 
 
 
@@ -93,6 +109,58 @@ public class CommonTools {
 
 		return rtn;
 	}
+	public static  String doPost(String url, Map<String, String[]> data) throws Exception {
+	      List<NameValuePair> formparams = new ArrayList<NameValuePair>(); 
+	        
+	        for (Entry<String, String[]> entry : data.entrySet()) {
+	            for(String value : entry.getValue()){
+	                if ("".equals(value)){
+	                    continue;
+	                }
+	                formparams.add(new BasicNameValuePair(entry.getKey(), value)); 
+	            }
+	        }
+	        
+	        UrlEncodedFormEntity requestEntity = null;
+	   
+	            requestEntity = new UrlEncodedFormEntity(formparams, "UTF-8");
+	       
+	          //  System.out.println(requestEntity.toString());
+	        HttpPost httpPost = new HttpPost(url);
+	        httpPost.setEntity(requestEntity);
+	        httpPost.addHeader("Content-Type", "application/x-www-form-urlencoded; charset=" + "UTF-8");
+	        
+	        return sendRequest(httpPost);
+  }
+	static String sendRequest(HttpUriRequest httpUriRequest) throws Exception{
+		   HttpClient client = new DefaultHttpClient();
+		
+
+         client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 7000);
+	        client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 7000);
+//	        wrapClient(client);
+	        HttpResponse response = null;
+	       // HttpContext httpContext = new BasicHttpContext();
+	            response = client.execute(httpUriRequest);
+//	            HttpHost targetHost = (HttpHost)httpContext.getAttribute(ExecutionContext.HTTP_TARGET_HOST);
+//				//获取实际的请求对象的URI,即重定向之后的"/blog/admin/login.jsp"
+//				HttpUriRequest realRequest = (HttpUriRequest)httpContext.getAttribute(ExecutionContext.HTTP_REQUEST);
+//				System.out.println("主机地址:" + targetHost);
+//				System.out.println("URI信息:" + realRequest.getURI());
+
+	        String responseContent = "";
+	        if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+	            HttpEntity responseEntity = response.getEntity();
+	       
+	                responseContent = EntityUtils.toString(responseEntity, "UTF-8");
+	                EntityUtils.consume(responseEntity);
+	         
+	        }
+
+	        client.getConnectionManager().shutdown();
+
+	        return responseContent;
+	    }
 	public static String createXMLURLConnection(String str_url, String para) throws Exception {
 	     
 	            URL url = new URL(str_url);

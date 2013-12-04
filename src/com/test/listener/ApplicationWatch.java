@@ -25,7 +25,7 @@ public void contextDestroyed(ServletContextEvent arg0) {
 	System.out.print("ֹͣ");
 	try {
 		SendCloud.sendMail("107607195@qq.com","Internal Monitor Stoped","Internal Monitor Stoped");
-		Mobile.sendSms("18810606513", "Internal Monitor Stoped");
+		Mobile.sendSms("18810606513", "InternalMonitorStoped");
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -44,7 +44,7 @@ public void contextInitialized(ServletContextEvent event) {
 	   try {
 
 		   new Clock(88888888,1000);
-			//SendCloud.sendMail("107607195@qq.com","Internal Monitor Started","Internal Monitor Started");
+			SendCloud.sendMail("107607195@qq.com","Internal Monitor Started","Internal Monitor Started");
 			//Mobile.sendSms("18810606513", "Internal Monitor Started");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

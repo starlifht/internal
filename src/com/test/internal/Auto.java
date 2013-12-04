@@ -1,6 +1,7 @@
 package com.test.internal;
 
 
+import com.interapi.open.InterOpen;
 import com.test.methods.APITools;
 import com.test.methods.Redis;
 import com.test.methods.SendCloud;
@@ -10,8 +11,46 @@ import com.test.methods.toLog4j;
 
 public class Auto {
 
-	// ****************************************HuDun*************************************************
 static String response=null;
+// ****************************************inter OPen*************************************************
+
+public static void Auto_interOpen(){
+	try{
+		APITools.apiName="checkauth";
+		response=InterOpen.checkauth("starlifht@sohu.com");
+		APITools.jsonCheck(response, "status", "10404");
+
+	}catch(Exception e ){
+		APITools.doException(APITools.apiName, APITools.errorInfo, e);
+	}
+	try{
+		APITools.apiName="cancelauth";
+		response=InterOpen.cancelauth("starlifht@sohu.com");
+		APITools.jsonCheck(response, "status", "10200");
+
+	}catch(Exception e ){
+		APITools.doException(APITools.apiName, APITools.errorInfo, e);
+	}
+	try{
+		APITools.apiName="getall";
+		response=InterOpen.getall("ppauthtest11@qq.com");
+		APITools.jsonCheck(response, "status", "10200");
+
+	}catch(Exception e ){
+		APITools.doException(APITools.apiName, APITools.errorInfo, e);
+	}
+	try{
+		APITools.apiName="checkdeveloper";
+		response=InterOpen.checkdeveloper();
+		APITools.jsonCheck(response, "status", "10200");
+
+	}catch(Exception e ){
+		APITools.doException(APITools.apiName, APITools.errorInfo, e);
+	}
+
+}
+// ****************************************HuDun*************************************************
+
 	public static void Auto_HuDun() {
 		try {
 
@@ -74,7 +113,7 @@ static String response=null;
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
 		}
 		try{
-			APITools.apiName="[sendSms]";
+			APITools.apiName="sendSms";
 			response=Mobile.sendSms("11110606513","Happy Everyday!");
 			if(response.trim().equals("success")){
 				APITools.getInfo(APITools.logInfo, APITools.apiName, response);
@@ -454,6 +493,7 @@ static String response=null;
 public static void justdoit() throws Exception{
 	APITools.logInfo=new StringBuffer();
 	APITools.errorInfo=new StringBuffer();
+	Auto.Auto_interOpen();
 	Auto.Auto_HuDun();
 	Auto.Auto_Mobile();
 	Auto.Auto_Internal();
@@ -487,9 +527,9 @@ public static void justdoit() throws Exception{
 }
 	public static void main(String[] args) {
 		// Auto.Auto_HuDun();
-	
+	Auto.Auto_interOpen();
 		//System.out.print(HuDun.logInfo);
-		System.out.println(System.currentTimeMillis());
+		System.out.println(APITools.logInfo);
 		System.out.println("===============ERROR==============");
 		
 	}

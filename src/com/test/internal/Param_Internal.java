@@ -174,10 +174,7 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String status = iter2.next();
-			APITools.jsonCheck(
-					Internal.getCookieInfo(userid),
-					APITools.getParams("userID:" + userid)
-							+ APITools.getParams("status:" + status), status);
+			APITools.jsonCheck(Internal.getCookieInfo(userid),"status", status);
 		}
 	}
 
