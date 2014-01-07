@@ -11,7 +11,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.test.internal.Auto;
+
 import com.test.methods.APITools;
 
 public class Log extends ActionSupport{

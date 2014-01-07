@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 
 
+
 import net.sf.json.JSONObject;
 
 import com.test.methods.APITools;
@@ -85,6 +86,8 @@ public class Internal {
 		xml.append("<passwordtype></passwordtype>\r\n");
 		xml.append("<question></question>\r\n");
 		xml.append("<answer></answer>\r\n");
+		xml.append("<email></email>\r\n");
+		xml.append("<emailflag></emailflag>\r\n");
 		xml.append("<createip></createip>\r\n");
 		xml.append("<uniqname>aaa</uniqname>\r\n");
 		xml.append("<avatarurl>aaa</avatarurl>\r\n");
@@ -117,6 +120,31 @@ public class Internal {
 		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 		xml.append("<info>\r\n");
 		xml.append("<uniqname>" + uniqname + "</uniqname>\r\n");
+		xml.append("<appid>" + appid + "</appid>\r\n");
+		xml.append("<ct>" + ct + "</ct>\r\n");
+		xml.append("<code>" + code + "</code>\r\n");
+		xml.append("</info>");		
+		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
+		APITools.xmlInfo=xml.toString();
+		System.out.println("*************************check用户唯一性***********************************");
+		System.out.println(rtn_xml);
+		return rtn_xml;
+	}
+	public static String get_createip(String userId) throws Exception {//获取用户注册信息
+		String appid = "9998";
+//status ： 0可用，1参数错误，2code错误， 3被占用，  4敏感词 5受保护 6系统错误
+		String key = "iqE?q#gv8--`G/jGA51]=ZANMg?=Lm";
+		String userid = userId;
+		String ct = String.valueOf(System.currentTimeMillis() / 1000);
+		String code = PPTools.md5(userid + appid + key + ct);
+		String rtn_xml = "";
+
+		String str_url = Params.DOMAIN+"interface/get_createip.jsp";
+
+		StringBuffer xml = new StringBuffer();
+		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
+		xml.append("<info>\r\n");
+		xml.append("<userid>" + userid + "</userid>\r\n");
 		xml.append("<appid>" + appid + "</appid>\r\n");
 		xml.append("<ct>" + ct + "</ct>\r\n");
 		xml.append("<code>" + code + "</code>\r\n");
@@ -196,11 +224,11 @@ public class Internal {
 		System.out.println(rtn_xml);
 		return rtn_xml;
 	}
-	public static String setOpenBind() throws Exception{//——————————添加绑定0
+	public static String setOpenBind(String Userid,String refUserID) throws Exception{//——————————添加绑定0
 		//0：操作成功1：参数错误,检查是否缺少必填项2：code错误3：userid已经是主帐号了，不能再做副帐号4：refuserid已经是副帐号了，不能再做主帐号5：一个主账号只能绑定同一个第三方的一个账号6：处理出现异常7：userid 已经被绑定，不能重复绑定。
-		String userid = "3742252238@baidu.sohu.com";
+		String userid = Userid;
 		//String userid = "94F38603463AC159175FB8356166DFBD@qq.sohu.com";
-		String refUserid = "zhangxiumin_003@focus.cn";
+		String refUserid = refUserID;//主账号
 		String appid = "200";
 		String key = "sohu_test";
 		String ct =  String.valueOf(System.currentTimeMillis() / 1000);
@@ -228,11 +256,43 @@ public class Internal {
 		System.out.println(rtn_xml);
 		return rtn_xml;
 	}
-	public static String deleteOpenBind() throws Exception{//————————删除绑定关系0
+	public static String updateopenbind(String userID,String refuserID) throws Exception{//——————————添加绑定0
+// 0：操作成功 1：参数错误,检查是否缺少必填项 2：code错误 4：refuserid已经是副帐号了，不能再做主帐号 5：一个主账号只能绑定同一个第三方的一个账号 6：处理出现异常
+		String userid =userID ;
+		//String userid = "94F38603463AC159175FB8356166DFBD@qq.sohu.com";
+		String refUserid =refuserID;//主账号
+		String appid = "200";
+		String key = "sohu_test";
+		String ct =  String.valueOf(System.currentTimeMillis() / 1000);
+		String code = PPTools.md5(userid + appid + key + ct);
+		String str_url = Params.DOMAIN+"interface/updateopenbind";
+			
+		StringBuffer xml = new StringBuffer();
+		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
+		xml.append("<info>\r\n");
+		xml.append("<userid>" + userid + "</userid>\r\n");
+		xml.append("<refUserid>" + refUserid + "</refUserid>\r\n");
+		xml.append("<appid>" + appid + "</appid>\r\n");
+		
+		xml.append("<ip>10.1.80.103</ip>\r\n");
+		xml.append("<ct>" + ct + "</ct>\r\n");
+		xml.append("<code>" + code + "</code>\r\n");
+
+		xml.append("</info>");
+
+		String rtn_xml;
+		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
+
+		APITools.xmlInfo=xml.toString();
+		System.out.println("******************************setOpenBindTest*******************************");
+		System.out.println(rtn_xml);
+		return rtn_xml;
+	}
+	public static String deleteOpenBind(String userID,String refuserID) throws Exception{//————————删除绑定关系0
 		//0：操作成功1：参数错误,检查是否缺少必填项2：code错误6：处理出现异常
 		//String userid = "6A04A49CA00227FFEB9090A3B20F44AD@qq.sohu.com";
-		String userid = "3742252238@baidu.sohu.com";
-		String refUserid = "zhangxiumin_003@focus.cn";
+		String userid = userID;
+		String refUserid = refuserID;
 		String appid = "200";
 		String key = "sohu_test";
 		String ct =  String.valueOf(System.currentTimeMillis() / 1000);
@@ -261,11 +321,11 @@ public class Internal {
 		
 		return rtn_xml;
 	}
-	public static String getOpenBindList() throws Exception{//————————查询绑定列表0
+	public static String getOpenBindList(String userID) throws Exception{//————————查询绑定列表0
 		//0：查询成功，同时返回bindList，bindList中是json格式的绑定账号列表（expireTime：过期时间格式yyyy-MM-dd HH:mm:ss，没有token为“”，token永远有效为“-1”，appid发生绑定的产品id，refuserid:主账号id，即查询的userid）
 		//1：参数错误,检查是否缺少必填项2：code错误6：处理出现异常
 
-		String userid = "6A04A49CA00227FFEB9090A3B20F44AD@qq.sohu.com";
+		String userid = userID;
 		String appid = "200";
 		String key = "sohu_test";
 		String ct =  String.valueOf(System.currentTimeMillis() / 1000);
@@ -557,8 +617,8 @@ APITools.xmlInfo=xml.toString();
 		return rtn_xml;
 	}
 	public static String getUUidListByUserid() throws Exception {//————根据userid批量查询uuid0
-		//
-		String userid = "107607195@qq.com,online0001@sohu.com";
+		//0:查询成功 1参数错误，2验证码错误，3 用户不存在 6非法用户名
+		String userid = "ada2013001@sohu.com,ada2013001@sogou.com,ada2013001@focus.cn";
 
 		//String userid = "test_013@chinaren.com,test_012@sogou.com,bj19090@yahoo.com.cn,zhangxiumin@sohu.com";
 		String appid = "200";
@@ -576,16 +636,17 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<appid>" + appid + "</appid>\r\n");
 		xml.append("<ct>" + ct + "</ct>\r\n");
 		xml.append("<code>" + code + "</code>\r\n");
-		xml.append("<cache>true</cache>\r\n");
+		xml.append("<cache>false</cache>\r\n");
 		xml.append("</info>");
 		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		APITools.xmlInfo=xml.toString();
 		System.out.println("**********************************getUUidListTest*********************************");
+		System.out.print(xml.toString());
 		System.out.println(rtn_xml);
 		return rtn_xml;
 	}
 	public static String getUserIdListByUUid() throws Exception {//————根据uuid批量查询userid0
-		String uuid = "b70ba797a1164a1s,a24e89ae955f410n,41c695f8fc7c48ff";
+		String uuid = "ba6eb68bcc9543fs,3f9ec3ae126f4ccs,31490d67efb0456f,ddb441117c7c40ec";
 		String appid = "200";
 		String key = "sohu_test";
 		String ct = String.valueOf(System.currentTimeMillis() / 1000);
@@ -603,9 +664,11 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<code>" + code + "</code>\r\n");
 		xml.append("<cache>true</cache>\r\n");
 		xml.append("</info>");
+		System.out.println(xml.toString());
 		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		APITools.xmlInfo=xml.toString();
 		System.out.println("**********************************getUserIdByUuidListTest**********************************");
+	
 		System.out.println(rtn_xml);
 		return rtn_xml;
 	}
@@ -671,10 +734,10 @@ APITools.xmlInfo=xml.toString();
 		System.out.println(rtn_xml);
 		return rtn_xml;
 	}
-	public static String recoverpwd() throws Exception {//————根据密保问题重置密码 0
+	public static String recoverpwd(String userID) throws Exception {//————根据密保问题重置密码 0
 		//0成功，1参数错误，2验证码错误，3用户名不存在，4提示问题答案校验失败，5一天内同一个账号密保错误超过6次，6修改失败
 
-		String userid = "wednesday_001@sohu.com";
+		String userid = userID;
 		String newPassword = "12345687";
 		String answer = "zhangxiumin";
 		String appid = "200";
@@ -709,7 +772,7 @@ APITools.xmlInfo=xml.toString();
 		String userid = userID;
 		//String password = "asd123";
 		String password = "12345687";
-		//String newPassword = "12345687";
+		String newPassword = "12345687";
 		String newquestion = "myname";
 		String newanswer = "zhangxiumin";
 		String appid = "200";
@@ -731,6 +794,7 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<newquestion>" + newquestion + "</newquestion>\r\n");
 		xml.append("<newanswer>" + newanswer + "</newanswer>\r\n");
 		xml.append("<password>" + password + "</password>\r\n");
+		xml.append("<newpassword>" + newPassword + "</newpassword>\r\n");
 		//xml.append("<usertype>" + 1 + "</usertype>\r\n");
 		xml.append("</info>");
 		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
@@ -770,10 +834,10 @@ APITools.xmlInfo=xml.toString();
 		System.out.println(rtn_xml);
 		return rtn_xml;
 	}
-	public static String adminUpdatePassword() throws Exception {//————重置任意密码 0最高权限 仅CMS
+	public static String adminUpdatePassword(String userID,String PWD) throws Exception {//————重置任意密码 0最高权限 仅CMS
 		//status为0成功，1参数错误，2验证码错误，3用户名不存在 4访问次数超限（1天200次）
-		String userid = "online00030@sohu.com";
-		String password = "12345687";
+		String userid = userID;
+		String password = PWD;
 		String appid = "9998";
 		String key = "iqE?q#gv8--`G/jGA51]=ZANMg?=Lm";
 		String ct = String.valueOf(System.currentTimeMillis() / 1000);
@@ -832,10 +896,10 @@ APITools.xmlInfo=xml.toString();
 		return rtn_xml;
 	}
 
-	public static String getUserBlackList() throws Exception {//——————更新登陆黑名单列表(不返回400)
+	public static String monitorblacklist() throws Exception {//——————更新登陆黑名单列表(不返回400)
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("Params.DOMAIN", "mail.sohu.com");
+		map.put("domain", "mail.sohu.com");
 		map.put("ip", "10.10.69.199");
 		map.put("instance_id", 0);
 		map.put("version", "2012-06-06 by douyuan");
@@ -858,14 +922,14 @@ APITools.xmlInfo=xml.toString();
 
 		
 	}
-	 public static String getServerToken() throws Exception{//——————————passport对项目内部提供token服务的接口
+	 public static String getToken(String userID) throws Exception{//——————————passport对项目内部提供token服务的接口
 		 //status	0：发送成功；1：参数错误；2：code错误；其他：失败
 		 //token		session token，可用于校验用户身份
 
          String appid = "200";
          String key = "sohu_test";
          String ct = String.valueOf(System.currentTimeMillis() / 1000);
-         String userid = "ppauthtest111@sohu.com";        
+         String userid = userID;        
          String code = PPTools.md5(userid+appid+key+ct);
          String rtn_xml = "";
          String str_url = Params.DOMAIN+"interface/token/get";
@@ -884,32 +948,33 @@ APITools.xmlInfo=xml.toString();
 		return rtn_xml;
 
  }
-	 public static String authServerToken (String Token) throws Exception{//——————手机app校验第三方登录的token
-//status	0：成功；1：参数错误；2：code错误； 9：server erro
-         String appid = "200";
-          String key = "sohu_test";
-          String userid = "ppauthtest111@sohu.com";  
-          String token = Token;
-          String ct = String.valueOf(System.currentTimeMillis() / 1000);
-          String code = PPTools.md5(userid+token+appid+key+ct);
-          String rtn_xml = "";
-          String str_url = Params.DOMAIN+"interface/token/auth";
-          StringBuffer xml = new StringBuffer();
-          xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
-          xml.append("<info>\r\n");
-          xml.append("<userid>" + userid + "</userid>\r\n");
-          xml.append("<type>" + 5 + "</type>\r\n");
-          xml.append("<token>" + token + "</token>\r\n");
-         xml.append("<appid>" + appid + "</appid>\r\n");
-          xml.append("<ct>" + ct + "</ct>\r\n");
-          xml.append("<code>" + code+ "</code>\r\n");
-          xml.append("</info>");     
-          rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
-          APITools.xmlInfo=xml.toString();
-          System.out.println(rtn_xml);
-		return rtn_xml;
-
-      }
+	 public static String authToken(String userID,String Token) throws Exception{
+		  String appid = "200";
+	         String key = "sohu_test";
+	         String ct = String.valueOf(System.currentTimeMillis() / 1000);
+	         String userid = userID;   
+	         String token=Token;
+	         String code = PPTools.md5(userid+appid+key+ct);
+	         String rtn_xml = "";
+	         String str_url = Params.DOMAIN+"interface/token/auth";
+	         StringBuffer xml = new StringBuffer();
+	         xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
+	        xml.append("<info>\r\n");
+	        xml.append("<userid>" + userid + "</userid>\r\n");
+	       xml.append("<type>" + 5 + "</type>\r\n");
+	        xml.append("<appid>" + appid + "</appid>\r\n");
+	        xml.append("<ct>" + ct + "</ct>\r\n");
+	        xml.append("<token>" + token + "</token>\r\n");
+	         xml.append("<code>" + code+ "</code>\r\n");
+	         xml.append("</info>");
+	         rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
+	         APITools.xmlInfo=xml.toString();
+	         System.out.println(rtn_xml);
+			return rtn_xml; 
+	
+		 
+	 }
+	
 	 public static String  mailsynchuser(String userId) throws Exception {// 邮箱同步用户信息
 		 //status	 0：发送成功；1：参数错误；2：code错误；其他：失败
        //String userid = "zhangxiumin@sohu.com";
@@ -936,7 +1001,7 @@ APITools.xmlInfo=xml.toString();
 
 	    }
 	 public static String Bindemail(String userId) throws Exception {//————————————绑定邮箱接口
-	       //String userid = "敏ada123@focus.cn";
+	       //String userid = "敏ada123@focus.cn";//0成功，1参数错误，2验证码错误，3用户不存在或者密码错误，4旧绑定邮箱错误，5新的绑定邮箱没有变化，6系统错误，7密码错误次数超限
 		   String userid=userId;
 	       String appid = "200";
 	       String key = "sohu_test";
@@ -974,7 +1039,7 @@ APITools.xmlInfo=xml.toString();
 					String userid = userID;
 					String ct = String.valueOf(System.currentTimeMillis()/1000);
 					String code = PPTools.md5(userid + appid + key + ct);
-					String type = Type;//旧功能：1-清除昵称；2-清除头像 3-清楚绑定邮箱; 4-清楚密保问题 ;5-清楚狐盾状态
+					String type = Type;//1：清除昵称；2：清除头像;3-清楚绑定邮箱; 4-清楚密保问题 ;
 					String str_url = Params.DOMAIN+"interface/admin/clearuserinfo";						
 					StringBuffer xml = new StringBuffer();
 					xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
@@ -1004,8 +1069,10 @@ APITools.xmlInfo=xml.toString();
 //		System.out.println(m); 
 //		getUserinfo(m);
 //		} 
+		authToken("ppauthtest12@sohu.com", "9d82c65b0def6434e7840a626458ccf3");
 //		String s="t搜狐dfs";
 //		checkuniqname(s);
+		//update_password("2585671060@qq.com");
 		//deletVUsers("107607195@vip.sohu.com");
 		//registUser("dsf23ds@126.com", "200", "sohu_test");
 		//getServerToken();
@@ -1020,16 +1087,27 @@ APITools.xmlInfo=xml.toString();
 		//activate("ppauthtest1@focus.cn");
 //		getUidByUserid("ppauthtest2@sohu.com");
 //		getUUidByUserId("ppauthtest2@sohu.com");
-		getUserBlackList();
+		//getUserBlackList();
 		//getServerToken();
-		String s =getCookieInfo("107607195@qq.com");
-		net.sf.json.JSONObject jj=APITools.toJson(s);
-		System.out.print(jj.get("status"));
+//		String s =getCookieInf o("107607195@qq.com");
+//		net.sf.json.JSONObject jj=APITools.toJson(s);
+//		System.out.print(jj.get("status"));
 	//	authUser("ppauthtest1@sohu.com","0");
 //		getServerToken();
 //		authServerToken("bbede89c0ca38d1c890c885d17feb131");
-	//	//registUser("ppauthtest1@vip.sohu.com","1013","djfi(Y&%ye483y45&%^830934dHisd2y%*HIUGDdii");
-		//getUUidByUserId("107607195@qq.com");
+	//	sendemailcaptcha("107607195@qq.com");
+	//registUser("sohuviptest@vip.sohu.com","1013","djfi(Y&%ye483y45&%^830934dHisd2y%*HIUGDdii");
+		//get_createip("ppauthtest123@sohu.com");
+		//Bindemail("ppauthtest32@sohu.com");
+		//getCookieInfo("154985201@qq.com");
+//		updateopenbind("A4BCD05A4D3D9E98B6BCFC95AF8A5320@qq.sohu.com","ppauthtest55@sohu.com");
+//		deleteOpenBind("A4BCD05A4D3D9E98B6BCFC95AF8A5320@qq.sohu.com","ppauthtest55@sohu.com");
+//		getOpenBindList("6A04A49CA00227FFEB9090A3B20F44AD@qq.sohu.com");
+		//getUserIdListByUUid();
+//		getToken("ppauthtest111@sohu.com");
+//		authToken("ppauthtest111@sohu.com", "7a14e511e64ed49bcdb90dd83de060ab");
+		//authServerToken("7a14e511e64ed49bcdb90dd83de060ab");
+		//authServerToken("bbede89c0ca38d1c890c885d17feb131");
 	}
 
 }

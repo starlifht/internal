@@ -7,7 +7,6 @@ import javax.servlet.ServletContextListener;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.test.internal.Auto;
 import com.test.internal.Mobile;
 import com.test.methods.Clock;
 import com.test.methods.Params;

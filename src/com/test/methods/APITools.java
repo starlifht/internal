@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 
 
 
+
 import net.sf.json.JSONObject;
 
 import com.test.internal.PPTools;
@@ -48,6 +49,10 @@ public class APITools {
 			}
 			
 		}
+	 public static String getInfoFromXML(String response,String element) throws Exception{
+		return XML.string2Doc(response).getRootElement().getChildText(element);
+		 
+	 }
 	 public static void jsonCheck(String response,String element,String status) throws Exception{//状态检查
 
 			if(APITools.toJson(response).get(element).equals(status)){			
@@ -84,7 +89,7 @@ public class APITools {
 	}
 	public static String getUserName() {// 生成用户名
 
-		return "s_pa"+ String.valueOf((int) (Math.random() * 90000000) + 10000000)+EnglishName();
+		return "sspa"+ String.valueOf((int) (Math.random() * 90000000) + 10000000)+EnglishName();
 	}
 	public static String getIP() throws Exception{//获得IP地址
 		InetAddress addr = InetAddress.getLocalHost();
@@ -108,7 +113,7 @@ public class APITools {
 	public static void doException(String APIname,StringBuffer info,Exception e) 
 	{//处理异常
 		e.printStackTrace();
-		getInfo(info,getAPIname(APIname),"[ERROR]"+e.toString());
+		getInfo(info,APIname,"[ERROR]"+e.toString());
 
 	}
 

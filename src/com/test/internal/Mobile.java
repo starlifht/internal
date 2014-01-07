@@ -1,5 +1,8 @@
 package com.test.internal;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.test.methods.APITools;
 import com.test.methods.CommonTools;
 import com.test.methods.Params;
@@ -14,7 +17,8 @@ public class Mobile {
 	 static StringBuffer errorInfo=new StringBuffer();
 	 public static String apiName=null;
 	 static StringBuffer logInfo=new StringBuffer();
-	
+	 private static String APPID = "9998";
+	    private static String APPKEY = "iqE?q#gv8--`G/jGA51]=ZANMg?=Lm";	
 	static String PhoneNum=APITools.getPhoneNum();
 	static String user1="online00015@sohu.com";
 	static String user2="online00016@sohu.com";
@@ -92,7 +96,7 @@ public class Mobile {
 		String password = "12345687";
 		String passwordtype = "0";
 		String uniqname = "mobile127";
-		String mobile = "18810606544";
+		String mobile = "18810606545";
 		
 		String ostype ="02";
 		String modeltype ="ffff";
@@ -148,9 +152,9 @@ public class Mobile {
 		System.out.println(rtn_xml);
 		return rtn_xml;
 	}
-	public static String wapAuth() throws Exception {//————??———无线passport用户认证内部校验接口3
+	public static String wapAuth(String userID) throws Exception {//—wap应用检查用户名和密码是否正确（wap_auth）
 		String appid = "200";//
-		String userid = "zhangxiumin2010@sohu.com";
+		String userid = userID;
 		String password = "12345687";
 		String key = "sohu_test";
 		String ct = String.valueOf(System.currentTimeMillis() / 1000);
@@ -310,9 +314,9 @@ public class Mobile {
 		return rtn_xml;
 	}	
 	public static String wapUnBindMobile(String PhoneNum) throws Exception{//——————用户解除绑定手机号0
-		String appid = "200";//status为0成功，1参数错误，2验证码错误，3手机号码没有绑定帐号， 4,该用户是手机邮箱用户，不能进行解除绑定6解除绑定手机失败
+		String appid =APPID;//status为0成功，1参数错误，2验证码错误，3手机号码没有绑定帐号， 4,该用户是手机邮箱用户，不能进行解除绑定6解除绑定手机失败
 		String mobile = PhoneNum;
-		String key = "sohu_test";
+		String key = APPKEY;
      
 		String ct = String.valueOf(System.currentTimeMillis() / 1000);
 		String code = PPTools.md5(mobile + appid + key + ct);
@@ -343,7 +347,7 @@ public class Mobile {
 
 		String appid = "200";
 		String key = "sohu_test";
-        String userid="starlifht@sohu.com";
+        String userid="ada2013001@sogou.com";
 		//String userid = "test_014@chinaren.com";
 		String ct = String.valueOf(System.currentTimeMillis() / 1000);
 		String code = PPTools.md5(userid + appid + key + ct);
@@ -421,7 +425,7 @@ public class Mobile {
 		System.out.println(rtn_xml);
 		return rtn_xml;
 	}
-	public static String  sendJms() throws Exception {
+	public static String  sendJms() throws Exception {//发送jms，目前支持发送用户账户注册和修改的消息，目前仅限1097使用
 		String message = "{\"messageType\":\"update\",\"user\":{\"userid\":\"zhangxiumin2010@sohu.com\",\"uniqname\":\"houlinyan01\",\"ip\":\"10.1.80.103\"},\"sendAppid\":\"9998\"}";
 		String appid = "1097";
 		//String appid = "200";
@@ -431,13 +435,13 @@ public class Mobile {
 		String code = PPTools.md5(message + appid + key + ct);
 		String ip = "10.1.80.103";
 		String type = "update";
-		String str_url = Params.DOMAIN+"interface/send_jms.jsp";
+		String str_url = Params.DOMAIN+"interface/sendjms";
 		StringBuffer xml = new StringBuffer();
 
 		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 		xml.append("<info>\r\n");
 		xml.append("<message>" + message + "</message>\r\n");
-
+		xml.append("<mobile>" + "18810606513" + "</mobile>\r\n");
 		xml.append("<appid>" + appid + "</appid>\r\n");
 		xml.append("<ct>" + ct + "</ct>\r\n");
 		xml.append("<code>" + code + "</code>\r\n");
@@ -504,7 +508,7 @@ public class Mobile {
 
 		return rtn_xml;
 	}
-	public static String  mobile_authtoken () throws Exception{
+	public static String  mobile_authtoken () throws Exception{//手机app的校验登录token
 
 		String userid = "s_pa31594145yjaz@sohu.com"; 
 		String appid = "9998";
@@ -618,7 +622,7 @@ public class Mobile {
 		System.out.println("**********************************sendemailcaptchaTest()*********************************");
 		return rtn_xml;
 		}
-	 public static String  regist_mobilecaptcha(String Num) throws Exception {//——————手机验证码校验
+	 public static String  mobilecaptcha(String Num) throws Exception {//——————手机验证码校验
 //status 0：成功 1：参数错误 2：接口签名校验不通过 3：系统错误 4：账号已经存在 5：手机号已经绑定了其他账号 6：发送验证码的次数超限 7：验证码校验次数超限 8：验证码错误或者已经过期
 	       String mobile = Num;
 	       String appid = "200";
@@ -628,7 +632,7 @@ public class Mobile {
 	       String rtn_xml = "";
 	       String password = "12345687";
 	       String captcha ="5304";
-	       String str_url = "http://internal.passport.sohu.com/interface/register/mobilecaptcha";
+	       String str_url = Params.DOMAIN+"interface/register/mobilecaptcha";
       StringBuffer xml = new StringBuffer();
      xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 	       xml.append("<bind>\r\n");
@@ -647,17 +651,16 @@ public class Mobile {
 		return rtn_xml;
 
 	}
-	  public static String sendcaptcha() throws Exception {//-------验证码手机绑定id
+	  public static String sendcaptcha(String phoneNum) throws Exception {//-------获取短信验证码
 //0 成功，1参数错误，2code错误，3 发送短信验证码次数超限，4 手机号@sohu.com的账号已经存在，5 手机号已经绑定了其他账号，6 手机号没有绑定账号，7手机号@sohu.com的账号不能解除绑定，9系统错误
-	       String mobile = "17210847012";
+	       String mobile = phoneNum;
 	       String appid = "200";
 	       String key = "sohu_test";
 	       String ct = String.valueOf(System.currentTimeMillis() / 1000);
 	       String code = PPTools.md5(mobile + appid + key + ct);
 	       String rtn_xml = "";
-	       String str_url = "http://internal.passport.sohu.com/interface/sendcaptcha";
-	       String type= "4";
-
+	       String str_url = Params.DOMAIN+"interface/sendcaptcha";
+	       String type= "3";//1、注册；3、绑定手机号；4解绑手机号
 	       StringBuffer xml = new StringBuffer();
 	       xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 	       xml.append("<info>\r\n");
@@ -666,7 +669,6 @@ public class Mobile {
 	       xml.append("<ct>" + ct + "</ct>\r\n");
 	       xml.append("<code>" + code + "</code>\r\n");
 	       xml.append("<type>" + type + "</type>\r\n");
-
 	       xml.append("</info>");
 	       
 	       APITools.xmlInfo=xml.toString();
@@ -675,24 +677,50 @@ public class Mobile {
 	       System.out.println(rtn_xml);
 	   
 		return rtn_xml;
-	    }
+	     }
+	  public static String verifycaptcha() throws Exception {//-------获取短信验证码
+		//0 成功，1参数错误，2code错误，3 发送短信验证码次数超限，4 手机号@sohu.com的账号已经存在，5 手机号已经绑定了其他账号，6 手机号没有绑定账号，7手机号@sohu.com的账号不能解除绑定，9系统错误
+			       String mobile = "18810606513";
+			       String appid = "200";
+			       String key = "sohu_test";
+			       String ct = String.valueOf(System.currentTimeMillis() / 1000);
+			       String code = PPTools.md5(mobile + appid + key + ct);
+			       String rtn_xml = "";
+			       String str_url = Params.DOMAIN+"interface/verifycaptcha";
+			       String type= "3";//1、注册；3、绑定手机号；4解绑手机号
+			       String captcha="74787";
+			       StringBuffer xml = new StringBuffer();
+			       xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
+			       xml.append("<info>\r\n");
+			       xml.append("<mobile>" + mobile + "</mobile>\r\n");
+			       xml.append("<appid>" + appid + "</appid>\r\n");
+			       xml.append("<ct>" + ct + "</ct>\r\n");
+			       xml.append("<code>" + code + "</code>\r\n");
+			       xml.append("<type>" + type + "</type>\r\n");
+			       xml.append("<captcha>"+captcha+"</captcha>"); 
+			       xml.append("</info>");
+			       
+			       APITools.xmlInfo=xml.toString();
+			       rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
+
+			       System.out.println(rtn_xml);
+			   
+				return rtn_xml;
+			     }
 	  public static String BindMobile() throws Exception {//-------绑定手机接口（验证码）
 		  //0成功，1参数错误，2验证码错误，3用户不存在，4用户已经绑定了手机号码，5该手机已经绑定了用户，6绑定手机失败，7手机绑定次数超限（一个手机一天只能绑定3次）
-	       String userid = "asd555qwe@sohu.com";
+	       String userid = "ppauthtest546@sohu.com";
 	       String appid = "200";
-	       String mobile = "15698563256";
+	       String mobile = "15652707429";
 	       String key = "sohu_test";
 	       String ct = String.valueOf(System.currentTimeMillis() / 1000);
 	       String code = PPTools.md5(userid + appid + key + ct);
 	       String rtn_xml = "";
-	       String captcha= "5123";
-	       
-	       String str_url = "http://internal.passport.sohu.com/interface/bindmobile";
-	       
+	       String captcha= "00245";	       
+	       String str_url = "http://internal.passport.sohu.com/interface/bindmobile";	       
 	       StringBuffer xml = new StringBuffer();
 	       xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
-	       xml.append("<auth>\r\n");
-	       
+	       xml.append("<auth>\r\n");	       
 	       xml.append("<userid>" + userid + "</userid>\r\n");
 	       xml.append("<mobile>" + mobile + "</mobile>\r\n");
 	       xml.append("<appid>" + appid + "</appid>\r\n");
@@ -702,7 +730,6 @@ public class Mobile {
 	       xml.append("</auth>");
 	       APITools.xmlInfo=xml.toString();
 	       rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
-
 	       System.out.println(rtn_xml);
 	 
 		return rtn_xml;
@@ -710,12 +737,12 @@ public class Mobile {
 	  public static String UnbindMobile() throws Exception {//——解除绑定验证码
 		    //0成功，1参数错误，2验证码错误，3手机号码没有绑定帐号， 4,该用户是手机邮箱用户，不能进行解除绑定，6解除绑定手机失败
 	       String appid = "200";
-	       String mobile = "15696582365";
+	       String mobile = "15652707429";
 	       String key = "sohu_test";
 	       String ct = String.valueOf(System.currentTimeMillis() / 1000);
 	       String code = PPTools.md5(mobile + appid + key + ct);
 	       String rtn_xml = "";
-	       String captcha= "5510";
+	       String captcha= "65026";
 
 	       
 	       String str_url = "http://internal.passport.sohu.com/interface/unbindmobile";
@@ -770,13 +797,34 @@ public static String authMobCode() throws Exception{
 	
 }
 
-
+public static String  wapgetmobile() throws Exception{//查询用户绑定的手机号
+    String url=Params.DOMAIN+"interface/wapgetmobile";
+    String userid = "houlinyan@sohu.com";
+    String ct = String.valueOf(System.currentTimeMillis() / 1000);
+    String appid = "200";
+    String key = "sohu_test";
+    Map<String,String>  paramMap=new HashMap<String, String>();
+    paramMap.put("userid",userid);
+    paramMap.put("appid","200");
+    paramMap.put("ct",ct);
+    String code = PPTools.md5(userid+appid + key + ct);
+    paramMap.put("code",code);
+    String paramStr =  CommonTools.getXMLString(paramMap);
+    System.out.println("paramStr {"+paramStr+"}");
+    String result = CommonTools.createXMLURLConnection(url,paramStr);
+    System.out.println(result);
+    APITools.xmlInfo=paramStr;
+   	return result;
+}
 	public static void main(String[] args) throws Exception {
-		//getMobCode("18810606513");
+	//	getMobCode("18810606513");
 //		mobile_gettoken();
 	//wapAuthMobile(user1,PhoneNum);
 //mobileRegUser();
-//wapBindMobile(user2,PhoneNum);
+		//sendcaptcha();
+//wapBindMobile("ppauthtest458@sohu.com","13811454236");
+		//wapUnBindMobile("15652707429");
+		//sendcaptcha();
 //switchMobile(user2,user1,PhoneNum);
 //	wapGetUserid();
 //		unbindMobile(user2,PhoneNum);
@@ -784,17 +832,23 @@ public static String authMobCode() throws Exception{
 		//____________________________________
 		//mobile_gettoken();
 //		sendcaptcha();
-//		BindMobile();
-//		UnbindMobile();
+		//BindMobile();
+	//UnbindMobile();
 		//wapAuth();
-		System.out.print(authMobCode());
-		//regmobiled("18810606511");
+		//sendSms("18911208605", "testsetstetset");
+		//System.out.print(authMobCode());
+	//	regmobiled("18810606513");
+
 		//getMobileInfoByUserid();
-	//regmobileuser("17710606513");
+//		sendcaptcha();
+		sendSms("17810606513", "sdfsdf");
+		//mobilecaptcha("18710606513");
+//sendcaptcha("18810606513");
 		//CommonTools.HttpGet("http://hexapixel.com/download.php?file=com.hexapixel.widgets.ribbon.alphatest.src.jar");
 		//sendmobileregcaptcha();
 		//getUseridListByMobile();
-		//mobile_gettoken();
+		////mobile_gettoken();
+		//endJms();
 	}
 
 }

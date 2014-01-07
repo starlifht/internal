@@ -45,7 +45,24 @@ public class Param_Internal {
 
 		}
 	}
+	public static void get_createip(int sheet, int columns) throws Exception {// ————————检查用户名是否唯一
+		APITools.apiName = APITools.getFuncName();
 
+		List<String> list1 = ExcelTools.ReadExcel(Params.FilePath, sheet,
+				columns - 1);
+		List<String> list2 = ExcelTools.ReadExcel(Params.FilePath, sheet,
+				columns);
+		Iterator<String> iter1 = list1.iterator();
+		Iterator<String> iter2 = list2.iterator();
+		while (iter1.hasNext() && iter2.hasNext()) {
+			String userid = iter1.next();
+			String status = iter2.next();
+
+			APITools.xmlCheck(
+					Internal.get_createip(userid), "status",status);
+
+		}
+	}
 	public static void authuser(int sheet, int columns) throws Exception {
 		APITools.apiName = APITools.getFuncName();
 
@@ -70,7 +87,25 @@ public class Param_Internal {
 			}
 		}
 	}
+	public static void wapauth(int sheet, int columns) throws Exception {
+		APITools.apiName = APITools.getFuncName();
 
+		List<String> list1 = ExcelTools.ReadExcel(Params.FilePath, sheet,
+				columns - 1);
+		List<String> list2 = ExcelTools.ReadExcel(Params.FilePath, sheet,
+				columns);
+		Iterator<String> iter1 = list1.iterator();
+		Iterator<String> iter2 = list2.iterator();
+		while (iter1.hasNext() && iter2.hasNext()) {
+			String userid = iter1.next();
+			String status = iter2.next();
+			
+				APITools.xmlCheck(
+						Mobile.wapAuth(userid),"status",status);
+
+		
+		}
+	}
 	public static void activate(int sheet, int columns) throws Exception {
 		APITools.apiName = APITools.getFuncName();
 
@@ -360,8 +395,7 @@ public class Param_Internal {
 				response = Internal.registUser(userID, appID, Key);
 
 				// String authResp=Internal.authUser(userID,"0");
-				APITools.xmlCheck(
-						Internal.update_password(userID), "status", "0");
+				APITools.xmlCheck(response, "status", "0");
 
 			} else {
 				userID = userName + "@" + userID;
@@ -369,7 +403,7 @@ public class Param_Internal {
 				response = Internal.registUser(userID, appID, Key);
 
 				APITools.xmlCheck(
-						Internal.update_password(userID), "status", "0");
+						response, "status", "0");
 
 			}
 		}

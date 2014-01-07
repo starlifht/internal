@@ -35,13 +35,13 @@ height:9px;
 width:500px;
 }
 </style>
-<title>Internal监控服务</title>
+<title>Internal Monitor</title>
 </head>
 <body>
 <div class="content">
-<h3>PassPort监控正在Running......</h3>
+<h3>PassPort Moniror is Running......</h3>
 <div id="pro"></div>
-<small>Sohu@CopyRight20131125</small>
+<small>Sohu@CopyRight20130107</small>
 <div id="log">
 <script type="text/javascript">
 Push();

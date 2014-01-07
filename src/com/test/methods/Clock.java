@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.test.internal.Auto;
+import com.test.internal.AutoRun;
 import com.test.internal.Mobile;
 
 public class Clock {
@@ -56,7 +56,7 @@ public class Clock {
 			if (count< num) {
 			
 				try {
-					Auto.justdoit();
+				AutoRun.justdoit();
 				
 				} catch (Exception e) {
 					e.printStackTrace();

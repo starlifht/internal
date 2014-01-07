@@ -156,14 +156,14 @@ public class HuDun {
 		
 
 	}
-	 public static String verifySToken(String userID) throws Exception{//校验 动态验证码
+	 public static String verifySToken(String userID,String Token) throws Exception{//校验 动态验证码
 			//0成功，1验证错误，2参数错误，500 服务器错误
 	        String appid = "200";
 	        String key = "sohu_test";
 	        String ct = String.valueOf(System.currentTimeMillis() / 1000);
 	       // String userid = "rain00a@sohu.com";
 	        String userid=userID;
-	        String stoken="457767";
+	        String stoken=Token;
 	       String code = PPTools.md5(userid+appid+key+ct);
 	        String rtn_xml = "";
 	        String str_url = Params.DOMAIN+"interface/stoken/verify";

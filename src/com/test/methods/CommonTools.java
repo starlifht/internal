@@ -9,11 +9,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -30,6 +32,26 @@ import org.apache.http.util.EntityUtils;
 
 
 public class CommonTools {
+	 public static String getXMLString(Map<String,String> hm) {
+	        String key = "", value = "";
+	        StringBuffer formatString = new StringBuffer();
+
+	        formatString.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
+	        formatString.append("<info>\r\n");
+
+	        Iterator iter = hm.keySet().iterator();
+	        while (iter.hasNext()) {
+	            key = (String) iter.next();
+	            value = (String) hm.get(key);
+	            if(StringUtils.isEmpty(value)){
+	                value = "";
+	            }
+	            formatString.append("<" + key + ">" + value + "</" + key + ">\r\n");
+	        }
+
+	        formatString.append("</info>\r\n");
+	        return formatString.toString();
+	    }
 	public static String getCaptcha() throws Exception{
 	    
 		  URL url=new URL("http://captcha.sce.sohu.com/query?id=abcED_BuVlRg4b1cYsJ1t");
