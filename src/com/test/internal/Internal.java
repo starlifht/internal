@@ -1069,7 +1069,8 @@ APITools.xmlInfo=xml.toString();
 //		System.out.println(m); 
 //		getUserinfo(m);
 //		} 
-		authToken("ppauthtest12@sohu.com", "9d82c65b0def6434e7840a626458ccf3");
+		
+		//authToken("ppauthtest12@sohu.com", "9d82c65b0def6434e7840a626458ccf3");
 //		String s="tËÑºüdfs";
 //		checkuniqname(s);
 		//update_password("2585671060@qq.com");

@@ -347,7 +347,7 @@ public static void isbind(){
 public static void sendStoken(){
 	try{//！！！！！！！！！！！！！！！！sendSToken
 		 APITools.apiName="sendSToken";		
-		 response=HuDun.sendSToken("ppauthtest2@sohu.com","18810606516");
+		 response=HuDun.sendSToken("ppauthtest2@sohu.com",APITools.getPhoneNum2());
 			APITools.xmlCheck(response, "status", "0");
 			}catch(Exception e){
 	APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -450,9 +450,9 @@ public static void up_del_OpenBind(){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
 		}
 }
-	public static void main(String[] args) {
-		monitorblacklist();
-
-	}
+//	public static void main(String[] args) {
+//		sendStoken();
+//
+//	}
 
 }
