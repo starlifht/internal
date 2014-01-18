@@ -353,7 +353,7 @@ APITools.xmlInfo=xml.toString();
 	public static String authUser(String userId,String userType) throws Exception {//————校验用户名、密码是否正确0（用户登录接口)
 		
 		//1:userid的值为手机号；usertype为0，userid值为全域名id，如：test-1@sohu.com
-		//status为0用户名密码正确，1参数错误，2code错误，3用户名密码不匹配，4外域用户未激活，5手机号码没有绑定（wap专用）6校验失败
+		//0用户名密码正确，1参数错误，2code错误，3用户名密码不匹配，4外域用户未激活，5手机号码没有绑定（wap专用）6校验失败 7 手机注册的sohu域账号未激活 8账号已被锁定 9用户输入的动态口令（stoken）错误
 		String userid =userId;
 		String appid = "200";
 		String key = "sohu_test";
@@ -1069,7 +1069,9 @@ APITools.xmlInfo=xml.toString();
 //		System.out.println(m); 
 //		getUserinfo(m);
 //		} 
-		
+		deletVUsers("18810606513@sohu.com");
+		//updateUser("ppauthtest21@sohu.com", "水电99费3hr");
+		//authUser("ppauthtest2@sohu.com", "0");
 		//authToken("ppauthtest12@sohu.com", "9d82c65b0def6434e7840a626458ccf3");
 //		String s="t搜狐dfs";
 //		checkuniqname(s);

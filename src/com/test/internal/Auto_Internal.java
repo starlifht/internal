@@ -3,7 +3,7 @@ package com.test.internal;
 import com.interapi.open.InterOpen;
 import com.test.methods.APITools;
 
-public class Auto_Internal {
+public class Auto_Internal {//test
 	static String response;
 	public static void Auto_interOpen(){
 		try{
@@ -49,7 +49,7 @@ public class Auto_Internal {
 
 		}
 	}
-	public static void wapauth(){
+	public static void wapauth(){//
 		try {
 
 			Param_Internal.wapauth(3, 2);//——————wap验证用户
@@ -245,7 +245,7 @@ public static void mobile_authtoken(){//
 public static void getMobileInfoByUserid(){
 	try{
 		APITools.apiName="getMobileInfoByUserid";
-		response=Mobile.getMobileInfoByUserid();
+		response=Mobile.getMobileInfoByUserid("ada2013001@sogou.com");
 		APITools.xmlCheck(response, "status", "0");
 	}catch(Exception e){
 		APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -442,17 +442,16 @@ public static void getOpenBindList(){
 public static void up_del_OpenBind(){
 	try{
 		APITools.apiName="up_del_OpenBind";
-		String response1=Internal.updateopenbind("A4BCD05A4D3D9E98B6BCFC95AF8A5320@qq.sohu.com","ppauthtest55@sohu.com");
-		String response2=Internal.deleteOpenBind("A4BCD05A4D3D9E98B6BCFC95AF8A5320@qq.sohu.com","ppauthtest55@sohu.com");
+		String response1=Internal.updateopenbind("96879025@taobao.sohu.com","ppauthtest55@sohu.com");
+		String response2=Internal.deleteOpenBind("96879025@taobao.sohu.com","ppauthtest55@sohu.com");
 		APITools.xmlCheck(response1, "status", "0");
 		APITools.xmlCheck(response2, "status", "0");
 	}catch(Exception e){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
 		}
 }
-//	public static void main(String[] args) {
-//		sendStoken();
-//
-//	}
+	public static void main(String[] args) {
+		up_del_OpenBind();
+	}
 
 }

@@ -16,16 +16,20 @@ public static String getToken() throws Exception{//获取第三方平台的用户的access_
 //目前限制appid：1106和1030、1120可以访问。
 	JSONObject josn=new JSONObject();
 	Map <String, String> ingredients = new HashMap <String, String>();
+	//String url="http://10.11.49.60:8003/openlogin/api/token/get";
     // String url="http://10.11.49.38:8007/openlogin/api/token/get";
      String url ="http://internal.passport.sohu.com/openlogin/api/token/get";
 	//josn.put("ingredients", ingredients);
-	String id="227097200@renren.sohu.com";
-	//String id="1689967123@sina.sohu.com";
+	//String id="227097200@renren.sohu.com";
+	//String id="1181164611@sina.sohu.com";//新闻客户端
 	//String id ="1325599907@baidu.sohu.com";
 	//String id ="96879025@taobao.sohu.com";
+	String id ="3362BBFF006FFA73E2754D9DF18B3F98@qq.sohu.com";
 	 String userid=id;
-	  String appid="1120";
-	  String appkey="4xoG%9>2Z67iL5]OdtBq$l#>DfW@TY";
+	 String appid="1106";
+	 String appkey="f@JclHjuQ`DORG<f0,OqS/Q(Lpp4&G";
+//	  String appid="1120";
+//	  String appkey="4xoG%9>2Z67iL5]OdtBq$l#>DfW@TY";
 //	  String appid="1044";
 //	  String appkey="=#dW$h%q)6xZB#m#lu'x]]wP=\\FUO7";
 //	  String appid="1030";

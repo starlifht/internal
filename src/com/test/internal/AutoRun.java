@@ -1,6 +1,6 @@
 package com.test.internal;
 
-import java.lang.reflect.InvocationTargetException;
+
 import java.lang.reflect.Method;
 
 import  com.test.internal.Auto_Internal;
@@ -48,13 +48,17 @@ public class AutoRun {
 		 for (int i=0;i<methods.length;i++) {
 
 			Method m = methods[i];
-			try {
+			if(!m.getName().equals("main")){
+				try {
 				m.invoke(0, null);
 			} catch (Exception e) {
 			
 				e.printStackTrace();
 			}
-			System.out.println(m.getName());
+				//System.out.println(m.getName());	
+			}
+
+			
 		 }
 	  
    }

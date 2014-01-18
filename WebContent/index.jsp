@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=GBK"
     pageEncoding="GBK"%>
-<!DOCTYPE html>
+     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html>
 <head>
 <%
@@ -13,6 +14,9 @@
 <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <style>
+body{
+font:normal 16px 微软雅黑, 黑体, sans-serif;
+}
 .content {
 	
 	margin: auto 40px;
@@ -26,6 +30,7 @@ h3{
 color:gray;
 }
 small{
+
 font-size:11px;
 color:gray;
 }
@@ -41,7 +46,7 @@ width:500px;
 <div class="content">
 <h3>PassPort Moniror is Running......</h3>
 <div id="pro"></div>
-<small>Sohu@CopyRight20130107</small>
+<a href="doInternal.jsp" target="blank">内部接口</a><small>Sohu@CopyRight20140118</small>
 <div id="log">
 <script type="text/javascript">
 Push();

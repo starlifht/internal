@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 
 
+
 import net.sf.json.JSONObject;
 
 import com.test.internal.PPTools;
@@ -64,7 +65,10 @@ public class APITools {
 			}
 			
 		}
-
+	 public static String  getXMLelement(String xml,String tag) throws Exception{
+		return XML.string2Doc(xml).getRootElement().getChildText(tag);
+		 
+	 }
 	public static String subStr(String response,String str){//½ØÈÎÒâ×Ö·û´®
 		response=response.trim();
 		int a=response.indexOf(str);
@@ -150,6 +154,7 @@ public class APITools {
 		return sb.toString();
 
 	}
+	
 	public static JSONObject toJson(String s){//×ªjson
 		return JSONObject.fromObject(s);
 		

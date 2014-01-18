@@ -89,15 +89,15 @@ public class InterOpen {
 
 	public static void main(String[] args) throws Exception {
  //InterOpen.checkauth("107607195@qq.com");
-//InterOpen.cancelauth("starlifht@qq.com");
+//InterOpen.cancelauth("ppauthtest11@sohu.com");
 		//InterOpen.applyapp();
 		//InterOpen.checkdeveloper();
 		
 		//APITools.jsonCheck(InterOpen.checkdeveloper(), null	, "10200");
 		//System.out.print(APITools.logInfo);
-	String s=InterOpen.getall("ppauthtest11@qq.com");
-	JSONObject jb=JSONObject.fromObject(s);
-	//System.out.print(jb.getString(0));
+	String s=InterOpen.getall("ppauthtest21@sohu.com");
+	//JSONObject jb=JSONObject.fromObject(s);
+	//System.out.print(s);
 	}
 
 }

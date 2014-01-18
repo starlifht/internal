@@ -341,14 +341,14 @@ public class Mobile {
 		System.out.println(rtn_xml);
 		return rtn_xml;
 	}
-	public static String getMobileInfoByUserid() throws Exception{//——————查询一个帐号手机绑定和验证的列表0
+	public static String getMobileInfoByUserid(String userID) throws Exception{//——————查询一个帐号手机绑定和验证的列表0
 		//Status说明：0：成功1：输入参数错误2：验证码错误，非法调用者, 3：用户不存在
 		//flag说明：1：绑定，2：验证 0：未绑定也未验证mobile:绑定或者验证的手机号
 
 		String appid = "200";
 		String key = "sohu_test";
-        String userid="ada2013001@sogou.com";
-		//String userid = "test_014@chinaren.com";
+       // String userid="ada2013001@sogou.com";
+		String userid = userID;
 		String ct = String.valueOf(System.currentTimeMillis() / 1000);
 		String code = PPTools.md5(userid + appid + key + ct);
 		String rtn_xml = "";
@@ -839,9 +839,9 @@ public static String  wapgetmobile() throws Exception{//查询用户绑定的手机号
 		//System.out.print(authMobCode());
 	//	regmobiled("18810606513");
 
-		//getMobileInfoByUserid();
+		getMobileInfoByUserid("107607195@qq.com");
 //		sendcaptcha();
-		sendSms("17810606513", "sdfsdf");
+		//sendSms("17810606513", "sdfsdf");
 		//mobilecaptcha("18710606513");
 //sendcaptcha("18810606513");
 		//CommonTools.HttpGet("http://hexapixel.com/download.php?file=com.hexapixel.widgets.ribbon.alphatest.src.jar");
