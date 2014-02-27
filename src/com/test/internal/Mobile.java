@@ -153,10 +153,12 @@ public class Mobile {
 		return rtn_xml;
 	}
 	public static String wapAuth(String userID) throws Exception {//—wap应用检查用户名和密码是否正确（wap_auth）
-		String appid = "200";//
+		//String appid = "200";//
 		String userid = userID;
 		String password = "12345687";
-		String key = "sohu_test";
+		String appid = "9998";
+		String key = "iqE?q#gv8--`G/jGA51]=ZANMg?=Lm";
+		//String key = "sohu_test";
 		String ct = String.valueOf(System.currentTimeMillis() / 1000);
 		String code = PPTools.md5(userid + appid + key + ct);
 		String rtn_xml = "";
@@ -816,11 +818,46 @@ public static String  wapgetmobile() throws Exception{//查询用户绑定的手机号
     APITools.xmlInfo=paramStr;
    	return result;
 }
+public static String  reguser(String userID) throws Exception{//手机app注册
+	String userid = userID;
+	String password="12345687";
+//	String appid = "9998";	
+//	String key = "iqE?q#gv8--`G/jGA51]=ZANMg?=Lm";
+	  String appid = "200";
+	    String key = "sohu_test";
+	//String ct = String.valueOf(System.currentTimeMillis() / 1000);
+	String rtn_xml = "";
+	String gid ="02ffff2001101c6dfc6b7c601ac2978357b7a81e2d7ae";
+	String str_url = "http://passport.sohu.com/mobile/reguser";
+	String sig = PPTools.md5(userid+appid+gid+key);
+
+	StringBuffer xml = new StringBuffer();
+	xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
+	xml.append("<info>\r\n");
+	xml.append("<userid>" + userid + "</userid>\r\n");
+	xml.append("<appid>" + appid + "</appid>\r\n");
+	xml.append("<sig>" + sig + "</sig>\r\n");
+	
+	xml.append("<password>" + password+ "</password>\r\n");
+	xml.append("<gid>" + gid + "</gid>\r\n");
+	xml.append("</info>");
+	APITools.xmlInfo=xml.toString();
+	rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
+
+	System.out.println(rtn_xml);
+	//System.out.println("**********************************getMobCode()*********************************");
+	return rtn_xml;
+}
+	
 	public static void main(String[] args) throws Exception {
+		Params.getParams();
+		
 	//	getMobCode("18810606513");
 //		mobile_gettoken();
 	//wapAuthMobile(user1,PhoneNum);
 //mobileRegUser();
+		reguser("justtest97@sohu.com");
+		System.out.println(APITools.xmlInfo);
 		//sendcaptcha();
 //wapBindMobile("ppauthtest458@sohu.com","13811454236");
 		//wapUnBindMobile("15652707429");
@@ -838,8 +875,8 @@ public static String  wapgetmobile() throws Exception{//查询用户绑定的手机号
 		//sendSms("18911208605", "testsetstetset");
 		//System.out.print(authMobCode());
 	//	regmobiled("18810606513");
-
-		getMobileInfoByUserid("107607195@qq.com");
+		//System.out.print(authMobCode());
+		//wapAuth("hey钟宏燕@focus.cn");
 //		sendcaptcha();
 		//sendSms("17810606513", "sdfsdf");
 		//mobilecaptcha("18710606513");

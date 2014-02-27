@@ -23,6 +23,6 @@ left: 50%;                  /* ¾à×ó±ß50%*/
 <title>Æô¶¯¼à¿Ø</title>
 </head>
 <body>
-<div id ="daohang"><a href="test.jsp#" onclick="api()"><img alt="" src="images/Go.png"></a></div>
+<div id ="daohang"><a href="test.jsp#" onclick="clearAllerror()"><img alt="" src="images/Go.png"></a></div>
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.test.internal;
 
 import com.interapi.open.InterOpen;
 import com.test.methods.APITools;
+import com.test.methods.Params;
 
 public class Auto_Internal {//test
 	static String response;
@@ -52,7 +53,7 @@ public class Auto_Internal {//test
 	public static void wapauth(){//
 		try {
 
-			Param_Internal.wapauth(3, 2);//——————wap验证用户
+			Param_Internal.wapauth(12, 2);//——————wap验证用户
 		} catch (Exception e) {
 			APITools.doException(APITools.apiName, APITools.errorInfo, e);
 
@@ -76,7 +77,7 @@ public static void updateUser(){
 
 	}
 }
-public static void wapauthnobile(){
+public static void wapAuthMobile(){
 	try {
 
 		Param_Internal.wapAuthMobile(18, 2);;//————————验证、手机绑定、交换、解绑流程
@@ -450,8 +451,10 @@ public static void up_del_OpenBind(){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e);
 		}
 }
+
 	public static void main(String[] args) {
-		up_del_OpenBind();
+		Params.getParams();
+		wapauth();
 	}
 
 }

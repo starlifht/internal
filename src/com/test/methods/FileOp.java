@@ -25,7 +25,7 @@ public class FileOp {
 
 		return s;
 	}
-	
+
 	public static void main(String[] args) {
 
 	}

@@ -16,7 +16,7 @@ import com.test.methods.APITools;
 /**
  * 
  */
-public class doInternal extends ActionSupport implements RequestAware{
+public class doInternal_del extends ActionSupport implements RequestAware{
 	private static final long serialVersionUID = 1L;
 	private String phone;
 	private String username;
@@ -33,7 +33,7 @@ public String wapUnBindMobile(){
 		String  status=APITools.getXMLelement(Mobile.wapUnBindMobile(phone), "status");
 				request.put("wapUnBindMobile", "返回码"+status);
 				if(status.equals("0")){
-					request.put("getMobileInfoByUserid", "解绑成功");
+					request.put("wapUnBindMobile", "解绑成功");
 				}
 	} catch (Exception e) {
 	
@@ -44,12 +44,12 @@ public String wapUnBindMobile(){
 }
 public String getMobileInfoByUserid(){
 	try {
-		String response=Mobile.getMobileInfoByUserid(username);
+		String response=Mobile.wap_get_mobile(username);
 		String  status=APITools.getXMLelement(response, "status");
 		String mobile=APITools.getXMLelement(response, "mobile");
-				request.put("getMobileInfoByUserid", "返回码"+status);
+				request.put("wap_get_mobile", "返回码"+status);
 				if(status.equals("0")){
-					request.put("getMobileInfoByUserid", "已绑定的手机号"+mobile);
+					request.put("wap_get_mobile", "已绑定的手机号"+mobile);
 				}
 	} catch (Exception e) {
 	

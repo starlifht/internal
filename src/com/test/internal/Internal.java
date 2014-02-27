@@ -356,9 +356,11 @@ APITools.xmlInfo=xml.toString();
 		//0用户名密码正确，1参数错误，2code错误，3用户名密码不匹配，4外域用户未激活，5手机号码没有绑定（wap专用）6校验失败 7 手机注册的sohu域账号未激活 8账号已被锁定 9用户输入的动态口令（stoken）错误
 		String userid =userId;
 		String appid = "200";
-		String key = "sohu_test";
+		String appkey = "sohu_test";
+//		  String appid="1120";
+//		  String appkey="4xoG%9>2Z67iL5]OdtBq$l#>DfW@TY";
 		String ct = String.valueOf(System.currentTimeMillis() / 1000);
-		String code = PPTools.md5(userid + appid + key + ct);
+		String code = PPTools.md5(userid + appid + appkey + ct);
 		String rtn_xml = "";
 		String password = "12345687";
 		String str_url = Params.DOMAIN+"interface/authuser";
@@ -377,6 +379,7 @@ APITools.xmlInfo=xml.toString();
 		xml.append("</info>");
 		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		APITools.xmlInfo=xml.toString();
+		System.out.println(xml.toString());
 		System.out.println("**********************************authUserTest*********************************");
 		System.out.println(rtn_xml);
 		return rtn_xml;
@@ -561,7 +564,8 @@ APITools.xmlInfo=xml.toString();
 		xml.append("</auth>");
 		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		APITools.xmlInfo=xml.toString();
-		System.out.println("**********************************getUserIdByUidTest*********************************");
+		System.out.println("**********************************getUserIdByUid*********************************");
+	
 		System.out.println(rtn_xml);
 		return rtn_xml;
 	}	
@@ -1061,15 +1065,18 @@ APITools.xmlInfo=xml.toString();
 
 
 	public static void main(String[] args) throws Exception {
+		Params.getParams();
 //		List a=ReadFile.readFile();
 //		Iterator<String> iter = a.iterator() ; 
 //		while(iter.hasNext()) { 
 //		String m = iter.next(); 
 //		// 打印信息或将信息保存到一个公共集合中 
 //		System.out.println(m); 
-//		getUserinfo(m);
+		//getUserinfo("我是测试haha@focus.cn");
 //		} 
-		deletVUsers("18810606513@sohu.com");
+		//System.out.println(PPTools.md5("star7788899"));
+		//update_password("hey钟宏燕@focus.cn");
+	//authUser("狐盾ada123@focus.cn","0");
 		//updateUser("ppauthtest21@sohu.com", "水电99费3hr");
 		//authUser("ppauthtest2@sohu.com", "0");
 		//authToken("ppauthtest12@sohu.com", "9d82c65b0def6434e7840a626458ccf3");
@@ -1088,8 +1095,12 @@ APITools.xmlInfo=xml.toString();
 //		JSONObject js=APITools.toJson(s);
 //		System.out.print(js.get("status"));
 		//activate("ppauthtest1@focus.cn");
-//		getUidByUserid("ppauthtest2@sohu.com");
-//		getUUidByUserId("ppauthtest2@sohu.com");
+	getUidByUserid("ppauthtest1@37wanwan.com");
+	getUserIdByUid("ff983b0151e84d0n");
+//	System.out.println(APITools.xmlInfo);
+		getUUidByUserId("ppauthtest1@37wanwan.com");
+		//System.out.println(APITools.xmlInfo);
+		getUserIdByUUid("ff983b0151e84d0n");
 		//getUserBlackList();
 		//getServerToken();
 //		String s =getCookieInf o("107607195@qq.com");

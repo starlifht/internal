@@ -34,6 +34,12 @@ public class RedisAction extends ActionSupport{
 		return "text";
 		
 	}
+	public String clearAllerror() throws Exception{		
+		new Redis().clearAllerror();
+		
+		return "text";
+		
+	}
 	public String getLog() throws Exception{
 		String loginfo =new Redis().getKey("loginfo");
 		String log=loginfo;

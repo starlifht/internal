@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@taglib uri="/struts-tags" prefix="s"%>
-     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+     <!DOCTYPE >
+     <!--  
 <html>
 <head>
 <title>Internal接口</title>
@@ -44,7 +45,7 @@ padding: 111px 0 22px 0;
 		</nav>
 
 <p></p>
-<form action="test_doInternal_wapUnBindMobile" method="post">
+<form action="" method="post">
 (1)解绑任意手机号：<input type="text" name="phone" required="required" >
 <input type="submit" name="unbind" value="解绑">
 </form>
@@ -52,15 +53,16 @@ padding: 111px 0 22px 0;
 <s:property value="#request.wapUnBindMobile"/>
 </div>&nbsp;
 <div id="dis1">(返回码描述：0:成功，1:参数错误，2:验证码错误，3:手机号码没有绑定帐号， 4:该用户是手机邮箱用户，5:不能进行解除绑定，6:解除绑定手机失败)</div>
-<br><form action="test_doInternal_getMobileInfoByUserid" method="post"><br>
+<br>
+<form action="" method="post"><br>
 (2)通过userID查询用户已绑定的手机号：<input type="text" name="username" required="required" >
 <input type="submit" name="search_mobile" value="查询">
 </form>
 <div id="hint2">
-<s:property value="#request.getMobileInfoByUserid"/>
+<s:property value="#request.wap_get_mobile"/>
 </div>&nbsp;
 <div id="dis2">(返回码描述：0 userID正常   ,  1 没有帐户绑定关系发生变化 , 6 数据库异常)</div>
-<br><form action="test_doInternal_wapBindMobile" method="post"><br>
+<br><form action="" method="post"><br>
 (3)绑定userID和手机号&nbsp; userID:<input type="text" name="username" required="required" >
   手机号:<input type="text" name="phone" required="required" >
 <input type="submit" name="bind" value="绑定">
@@ -69,7 +71,7 @@ padding: 111px 0 22px 0;
 </div>&nbsp;
 <div id="dis3">(返回码描述：0成功，1参数错误，2验证码错误，3用户不存在，4用户已经绑定了手机号码，5该手机已经绑定了用户 6绑定手机失败 7手机绑定次数超限（一个手机一天只能绑定3次）
 )</div>
-<br><form action="test_doInternal_registUser" method="post"><br>
+<br><form action="" method="post"><br>
 (4)PASSPORT账户注册&nbsp; 用户名(邮箱格式):<input type="text" name="username" required="required" >
   默认密码：12345687
 <input type="submit" name="reg" value="注册">
@@ -83,4 +85,4 @@ padding: 111px 0 22px 0;
 </body>
 <footer>
 搜狐&nbsp;&copy;&nbsp;CopyRight 20140118 1013</footer>
-</html>
+</html>-->

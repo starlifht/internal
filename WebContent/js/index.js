@@ -19,12 +19,13 @@
 //    
    
    
-   function api(){
+   function clearAllerror(){
      
-    $.post("test_runCheck_doCheck", function(data, textStatus) {
+    $.post("test_RedisAction_clearAllerror", function(data, textStatus) {
         this;
-        alert("启动成功");
+       
        }
+    alert("清除Redis错误信息");
        ); 
         
         

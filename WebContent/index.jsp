@@ -11,12 +11,15 @@
 %>
 <base href=<%=basePath%>>
 <meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link rel="Shortcut Icon" href="images/logo_50x34.png"/>
 <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <style>
 body{
 font:normal 16px 微软雅黑, 黑体, sans-serif;
 }
+.title {background-color:#21a6ff;color:white;text-align: center;}
+
 .content {
 	
 	margin: auto 40px;
@@ -29,24 +32,26 @@ word-wrap:normal;
 h3{
 color:gray;
 }
-small{
 
-font-size:11px;
-color:gray;
-}
 #pro{
 background:url("images/pro.gif");
 height:9px;
 width:500px;
+margin:10px auto;
 }
 </style>
 <title>Internal Monitor</title>
+
 </head>
 <body>
+
+<div class="title">
+<h1>Internal接口自动化 Moniror is Running......</h1>
+<small>Copyright @ 2014 Sohu.com Inc. All Rights Reserved. 搜狐公司 版权所有</small>
+</div>
 <div class="content">
-<h3>PassPort Moniror is Running......</h3>
 <div id="pro"></div>
-<a href="doInternal.jsp" target="blank">内部接口</a><small>Sohu@CopyRight20140118</small>
+
 <div id="log">
 <script type="text/javascript">
 Push();

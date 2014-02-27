@@ -4,6 +4,7 @@ package com.test.methods;
 
 import java.util.List;
 import java.util.TreeSet;
+
 import net.sf.json.JSONArray;
 import redis.clients.jedis.Jedis;
 
@@ -21,6 +22,7 @@ public class Redis {
 		jedis.set(key, value);
 	
 	}
+	
 	public  void expire(String key,int time){
 		jedis.expire(key, time);//10000Ð¡Ê±
 	}
@@ -34,6 +36,7 @@ public class Redis {
 	}
 	public void  getIPandPort() throws Exception{
 		
+			//String s=CommonTools.HttpGet("http://sceapi.sce.local.17173.com/api/redis/release?uid=1008");
 		String s=CommonTools.HttpGet("http://sceapi.apps.sohuno.com/api/redis/release?uid=1008");
 		JSONArray jsonArray = JSONArray.fromObject(s);
 		ip =jsonArray.getJSONObject(0).get("ip").toString();
@@ -66,30 +69,21 @@ public class Redis {
 		return sb.toString();
 		
 	}
-	public void test(){
-		jedis.lpush("rrr1", "1");
-		jedis.lpush("rrr1", "2");
-		jedis.lpush("rrr1", "3");
-		jedis.lpush("rrr1", "4");
-		jedis.lpush("rrr1", "5");
-		jedis.lpush("rrr1", "6");
-		  StringBuffer sb=new StringBuffer();
-		 List<String> list = jedis.lrange("rrr1", 0, -1);
-		  for(int i=0;i<list.size();i++){
-			  String s=list.get(i);
-			  if(jedis.exists(s)){
-				
-			   sb.append(jedis.get(s));}else{
-				   jedis.lrem("errorlist", i, s);
-			   }
-		  }
-		  
-		
+	public void clearAllerror() throws Exception{
+		jedis.del("errorlist");
+	}
+	public void test() throws Exception{
+	
+	 Jedis jedis6 = new Jedis("10.5.107.31",1029) ;
+		jedis6.auth("306ae523382bdb998ed639b48789093c");  
+		jedis6.set("test", "tes]t55");
+		System.out.print(jedis6.get("test"));
 	}
 	public static void main(String[] args) throws Exception {
 		//String s=new FileOp().readFile("d:\\error.log").toString();
 		//new Redis().setKey("loginfo", "²âÊÔtest");
 		new Redis().jedis.del("errorlist");
+	//	new Redis().test();
 //		Jedis jedis=new Redis().jedis;
 //		jedis.sadd("testSet", "s1");
 //		  jedis.sadd("testSet", "s2");

@@ -95,9 +95,9 @@ public class InterOpen {
 		
 		//APITools.jsonCheck(InterOpen.checkdeveloper(), null	, "10200");
 		//System.out.print(APITools.logInfo);
-	String s=InterOpen.getall("ppauthtest21@sohu.com");
+	String s=InterOpen.cancelauth("ppauthtest21@sohu.com");
 	//JSONObject jb=JSONObject.fromObject(s);
-	//System.out.print(s);
+	System.out.print(s);
 	}
 
 }

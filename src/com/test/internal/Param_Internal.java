@@ -443,15 +443,18 @@ public class Param_Internal {
 			String s1 = iter1.next();
 			String s2 = iter2.next();
 			response1 = Mobile.wapAuthMobile(s1, phoneNumber);
-			response2 = Mobile.wapBindMobile(s2, phoneNumber);
-			response3 = Mobile.switchMobile(s2, s1, phoneNumber);
-			response4 = Mobile.wapUnBindMobile(phoneNumber);
 			APITools.apiName = "wapAuthMobile";
 			APITools.xmlCheck(response1, "status", "0");
+			response2 = Mobile.wapBindMobile(s2, phoneNumber);
 			APITools.apiName = "wapBindMobile";
 			APITools.xmlCheck(response2,  "status", "0");
+			response3 = Mobile.switchMobile(s2, s1, phoneNumber);
 			APITools.apiName = "switchMobile";
 			APITools.xmlCheck(response3,  "status", "0");
+			response4 = Mobile.wapUnBindMobile(phoneNumber);
+		
+		
+		
 			APITools.apiName = "unbindMobile";
 			APITools.xmlCheck(response4, "status",
 					"0");

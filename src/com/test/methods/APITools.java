@@ -1,13 +1,16 @@
 package com.test.methods;
 
+import java.io.InputStream;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 
 
@@ -162,7 +165,17 @@ public class APITools {
 	public static String getDate(){
 		return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 	}
-
+	public static String  getProperty(String value){
+		InputStream inputStream =APITools.class.getClassLoader().getResourceAsStream("internal.properties");   
+		  Properties p = new Properties();   
+		  try {   
+		   p.load(inputStream);   
+		  } catch (Exception e1) {   
+		   e1.printStackTrace();   
+		  }   
+		//System.out.println("ip:"+p.getProperty("ip")+",port:"+p.getProperty("port")); 
+		return p.getProperty(value);
+	}
 	public static void main(String[] args) throws Exception {
 
 		//System.out.println(InetAddress.getByName("internal-test.apps.sohuno.com"));
