@@ -31,11 +31,11 @@ public class Internal {
 		String userid = userId;
 		String uniqname = "absouhu4";
 		String birthday = "1978-11-16";
-		String createip = "10.1.80.232";
+		String createip = "159.1.80.232";
 		String gender = "2";
 		String username = "XIAOxie32";
-		String question = "tadmin_question";
-		String answer = "tadmin_anasdswer";
+		String question = "我的名字是什么";
+		String answer = "sohutest";
 		String othermail = "jyslp2002@gmail.com";
 		String cardtype = "2";
 		String cardid = "412523298207214542";
@@ -60,8 +60,9 @@ public class Internal {
 		xml.append("<answer>" + answer + "</answer>\r\n");
 		xml.append("<createip>" + createip + "</createip>\r\n");	
 		xml.append("</register>");
-		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		APITools.xmlInfo=xml.toString();
+
+		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		System.out.println("****************************用户注册*************************************");
 		System.out.println(rtn_xml);
 		return rtn_xml;
@@ -96,9 +97,10 @@ public class Internal {
         xml.append("<uniqname_force>" + 1 + "</uniqname_force>\r\n");
 
 		xml.append("</register>");
+		APITools.xmlInfo=xml.toString();
 	String rtn_xml = CommonTools.createXMLURLConnection(str_url,
 				xml.toString());
-	APITools.xmlInfo=xml.toString();
+
 		System.out.println("******************************************getUserinfo******************************************");
 		System.out.println(rtn_xml);
 		
@@ -123,9 +125,10 @@ public class Internal {
 		xml.append("<appid>" + appid + "</appid>\r\n");
 		xml.append("<ct>" + ct + "</ct>\r\n");
 		xml.append("<code>" + code + "</code>\r\n");
-		xml.append("</info>");		
-		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
+		xml.append("</info>");	
 		APITools.xmlInfo=xml.toString();
+		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
+		
 		System.out.println("*************************check用户唯一性***********************************");
 		System.out.println(rtn_xml);
 		return rtn_xml;
@@ -139,8 +142,8 @@ public class Internal {
 		String code = PPTools.md5(userid + appid + key + ct);
 		String rtn_xml = "";
 
-		String str_url = Params.DOMAIN+"interface/get_createip.jsp";
-
+		String str_url = Params.DOMAIN+"interface/getcreateip";
+		//String str_url = Params.DOMAIN+"interface/get_createip.jsp";
 		StringBuffer xml = new StringBuffer();
 		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 		xml.append("<info>\r\n");
@@ -215,11 +218,11 @@ public class Internal {
 		xml.append("<uniqname>" + uniqname + "</uniqname>\r\n");
 
 		xml.append("</register>");
+		APITools.xmlInfo=xml.toString();
 
 		String rtn_xml = CommonTools.createXMLURLConnection(str_url,
 				xml.toString());
 
-		APITools.xmlInfo=xml.toString();
 		System.out.println("**********************************updateUserInfoTest**********************************");
 		System.out.println(rtn_xml);
 		return rtn_xml;
@@ -364,22 +367,24 @@ APITools.xmlInfo=xml.toString();
 		String rtn_xml = "";
 		String password = "12345687";
 		String str_url = Params.DOMAIN+"interface/authuser";
-
+            
 		StringBuffer xml = new StringBuffer();
 		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 		xml.append("<info>\r\n");
 		xml.append("<userid>" + userid + "</userid>\r\n");
 		xml.append("<appid>" + appid + "</appid>\r\n");
 		xml.append("<ct>" + ct + "</ct>\r\n");
+		xml.append("<ip>" + "123.12.12.12" + "</ip>\r\n");
 		xml.append("<code>" + code + "</code>\r\n");
 		xml.append("<password>" + password + "</password>\r\n");
 		xml.append("<pwdtype>" + "0" + "</pwdtype>\r\n"); 
 		xml.append("<usertype>" + userType + "</usertype>\r\n");
 		//xml.append("<stoken>"+"962872"+"</stoken>\r\n");	
 		xml.append("</info>");
-		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		APITools.xmlInfo=xml.toString();
-		System.out.println(xml.toString());
+		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
+		
+		//System.out.println(xml.toString());
 		System.out.println("**********************************authUserTest*********************************");
 		System.out.println(rtn_xml);
 		return rtn_xml;
@@ -393,8 +398,8 @@ APITools.xmlInfo=xml.toString();
 		String code = PPTools.md5(userids + appid + key + ct);
 		String rtn_xml = "";
 
-		String str_url = Params.DOMAIN+"interface/deleteusers.jsp";
-
+		//String str_url = Params.DOMAIN+"interface/deleteusers.jsp";
+		String str_url = Params.DOMAIN+"interface/deleteusers";
 		StringBuffer xml = new StringBuffer();
 		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 		xml.append("<auth>\r\n");
@@ -403,8 +408,9 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<ct>" + ct + "</ct>\r\n");
 		xml.append("<code>" + code + "</code>\r\n");
 		xml.append("</auth>");
-		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		APITools.xmlInfo=xml.toString();
+		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
+	
 		System.out.println("**********************************deletusersTest*********************************");
 
 		System.out.println(rtn_xml);
@@ -431,9 +437,10 @@ APITools.xmlInfo=xml.toString();
 				xml.append("<ct>" + ct + "</ct>\r\n");
 				xml.append("<code>" + code + "</code>\r\n");
 				xml.append("</info>");
+				APITools.xmlInfo=xml.toString();
 				rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 
-				APITools.xmlInfo=xml.toString();
+			
 				System.out.println("**********************************activateUserTest*********************************");
 				System.out.println(rtn_xml);
 				return rtn_xml;
@@ -456,9 +463,10 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<ct>" + ct + "</ct>\r\n");
 		xml.append("<code>" + code + "</code>\r\n");
 		xml.append("</auth>");
+		APITools.xmlInfo=xml.toString();
 		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 
-		APITools.xmlInfo=xml.toString();
+		
 		System.out.println("**********************************checkUserTest*********************************");
 		System.out.println(rtn_xml);
 		return rtn_xml;
@@ -512,8 +520,9 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<ct>" + ct + "</ct>\r\n");
 		xml.append("<code>" + code + "</code>\r\n");
 		xml.append("</info>");
-		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		APITools.xmlInfo=xml.toString();
+
+		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		System.out.println("**********************************syncvTest*********************************");
 		System.out.println(rtn_xml);
 		return rtn_xml;
@@ -529,8 +538,8 @@ APITools.xmlInfo=xml.toString();
 		String code = PPTools.md5(userid + appid + key + ct);
 		String rtn_xml = "";
 
-		String str_url = Params.DOMAIN+"interface/getUidByUserid.jsp";
-		
+		//String str_url = Params.DOMAIN+"interface/getUidByUserid.jsp";
+		String str_url = Params.DOMAIN+"interface/getuidbyuserid";
 		StringBuffer xml = new StringBuffer();
 		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 		xml.append("<auth>\r\n");
@@ -553,7 +562,8 @@ APITools.xmlInfo=xml.toString();
 		String ct = String.valueOf(System.currentTimeMillis() / 1000);
 		String code = PPTools.md5(uid + appid + key + ct);
 		String rtn_xml = "";
-		String str_url = Params.DOMAIN+"interface/getUseridByUid.jsp";
+		//String str_url = Params.DOMAIN+"interface/getUseridByUid.jsp";
+		String str_url = Params.DOMAIN+"interface/getuseridbyuid";
 		StringBuffer xml = new StringBuffer();
 		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 		xml.append("<auth>\r\n");
@@ -562,8 +572,9 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<ct>" + ct + "</ct>\r\n");
 		xml.append("<code>" + code + "</code>\r\n");
 		xml.append("</auth>");
-		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		APITools.xmlInfo=xml.toString();
+		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
+		
 		System.out.println("**********************************getUserIdByUid*********************************");
 	
 		System.out.println(rtn_xml);
@@ -588,8 +599,9 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<ct>" + ct + "</ct>\r\n");
 		xml.append("<code>" + code + "</code>\r\n");
 		xml.append("</auth>");
+		APITools.xmlInfo=xml.toString();
 		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
-		APITools.xmlInfo=xml.toString();	
+		
 		System.out.println("**********************************getUUidByUserIdTest*********************************");
 		System.out.println(rtn_xml);
 		return rtn_xml;
@@ -613,9 +625,10 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<ct>" + ct + "</ct>\r\n");
 		xml.append("<code>" + code + "</code>\r\n");
 		xml.append("</auth>");
+		APITools.xmlInfo=xml.toString();
 		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 
-		APITools.xmlInfo=xml.toString();
+		
 		System.out.println("**********************************getUserIdByUuiddTest*********************************");
 		System.out.println(rtn_xml);
 		return rtn_xml;
@@ -668,9 +681,8 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<code>" + code + "</code>\r\n");
 		xml.append("<cache>true</cache>\r\n");
 		xml.append("</info>");
-		System.out.println(xml.toString());
-		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		APITools.xmlInfo=xml.toString();
+		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		System.out.println("**********************************getUserIdByUuidListTest**********************************");
 	
 		System.out.println(rtn_xml);
@@ -743,7 +755,7 @@ APITools.xmlInfo=xml.toString();
 
 		String userid = userID;
 		String newPassword = "12345687";
-		String answer = "zhangxiumin";
+		String answer = "sohutest";
 		String appid = "200";
 		String key = "sohu_test";
 		String ct = String.valueOf(System.currentTimeMillis() / 1000);
@@ -778,7 +790,7 @@ APITools.xmlInfo=xml.toString();
 		String password = "12345687";
 		String newPassword = "12345687";
 		String newquestion = "myname";
-		String newanswer = "zhangxiumin";
+		String newanswer = "测试的";
 		String appid = "200";
 		String key = "sohu_test";
 		String ct = String.valueOf(System.currentTimeMillis() / 1000);
@@ -801,9 +813,10 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<newpassword>" + newPassword + "</newpassword>\r\n");
 		//xml.append("<usertype>" + 1 + "</usertype>\r\n");
 		xml.append("</info>");
+		APITools.xmlInfo=xml.toString();
+
 		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 
-		APITools.xmlInfo=xml.toString();
 		System.out.println("**********************************updatepwdTest**********************************");
 		System.out.println(rtn_xml);
 		return rtn_xml;
@@ -812,8 +825,10 @@ APITools.xmlInfo=xml.toString();
 		//Status:返回结果 0:处理成功 1 处理失败 3：账号不存在
 		//String userid = "C9E12740CCA4467CC5DF1CBDB651CDDA@qq.sohu.com";
 		String userid = userID;
-		String appid = "1073";
-		String key = "?qPQ(UIeRoq.=c+IYYx%x7159ZpF'=";
+		String appid = "200";
+		String key = "sohu_test";
+//		String appid = "1073";
+//		String key = "?qPQ(UIeRoq.=c+IYYx%x7159ZpF'=";
 		String ct = String.valueOf(System.currentTimeMillis() / 1000);
 		String code = PPTools.md5(userid + appid + key + ct);
 		String persistentcookie = "1";
@@ -831,9 +846,9 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<persistentcookie>" + persistentcookie + "</persistentcookie>\r\n");
 		xml.append("<ip>10.1.80.103</ip>\r\n");
 		xml.append("</info>");
-		
-		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 		APITools.xmlInfo=xml.toString();
+		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
+		
 		System.out.println("**********************************getCookieInfo*********************************");
 		System.out.println(rtn_xml);
 		return rtn_xml;
@@ -850,8 +865,8 @@ APITools.xmlInfo=xml.toString();
 
 		// String str_url =
 		// Params.DOMAIN+"interface/wap_auth_mobile.jsp";
-		String str_url = Params.DOMAIN+"admin/admin_update_password.jsp";
-
+		//String str_url = Params.DOMAIN+"admin/admin_update_password.jsp";
+	String str_url = Params.DOMAIN+"interface/admin/updatepwd";
 		StringBuffer xml = new StringBuffer();
 		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 		xml.append("<info>\r\n");
@@ -890,11 +905,11 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<ct>" + ct + "</ct>\r\n");
 		xml.append("<code>" + code + "</code>\r\n");
 		xml.append("</info>");
+		APITools.xmlInfo=xml.toString();
 
 		//System.out.print(xml);
 		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 
-		APITools.xmlInfo=xml.toString();
 		System.out.println("**********************************sendemailcaptchaTest()*********************************");
 		System.out.println(rtn_xml);
 		return rtn_xml;
@@ -1076,52 +1091,26 @@ APITools.xmlInfo=xml.toString();
 //		} 
 		//System.out.println(PPTools.md5("star7788899"));
 		//update_password("hey钟宏燕@focus.cn");
-	//authUser("狐盾ada123@focus.cn","0");
-		//updateUser("ppauthtest21@sohu.com", "水电99费3hr");
-		//authUser("ppauthtest2@sohu.com", "0");
-		//authToken("ppauthtest12@sohu.com", "9d82c65b0def6434e7840a626458ccf3");
-//		String s="t搜狐dfs";
-//		checkuniqname(s);
-		//update_password("2585671060@qq.com");
-		//deletVUsers("107607195@vip.sohu.com");
-		//registUser("dsf23ds@126.com", "200", "sohu_test");
-		//getServerToken();
-		//authServerToken("56d2d897daf1e2b5b8cd74e04c6d53c6");
-//		setOpenBind();
-//		getOpenBindList();
-//		deleteOpenBind();
-		//getUserinfo("dsfd");
-//getCookieInfo("ada2013005@sohu.com");
-//		JSONObject js=APITools.toJson(s);
-//		System.out.print(js.get("status"));
-		//activate("ppauthtest1@focus.cn");
-	getUidByUserid("ppauthtest1@37wanwan.com");
-	getUserIdByUid("ff983b0151e84d0n");
-//	System.out.println(APITools.xmlInfo);
-		getUUidByUserId("ppauthtest1@37wanwan.com");
-		//System.out.println(APITools.xmlInfo);
-		getUserIdByUUid("ff983b0151e84d0n");
-		//getUserBlackList();
-		//getServerToken();
-//		String s =getCookieInf o("107607195@qq.com");
-//		net.sf.json.JSONObject jj=APITools.toJson(s);
-//		System.out.print(jj.get("status"));
-	//	authUser("ppauthtest1@sohu.com","0");
-//		getServerToken();
-//		authServerToken("bbede89c0ca38d1c890c885d17feb131");
-	//	sendemailcaptcha("107607195@qq.com");
-	//registUser("sohuviptest@vip.sohu.com","1013","djfi(Y&%ye483y45&%^830934dHisd2y%*HIUGDdii");
-		//get_createip("ppauthtest123@sohu.com");
-		//Bindemail("ppauthtest32@sohu.com");
-		//getCookieInfo("154985201@qq.com");
-//		updateopenbind("A4BCD05A4D3D9E98B6BCFC95AF8A5320@qq.sohu.com","ppauthtest55@sohu.com");
-//		deleteOpenBind("A4BCD05A4D3D9E98B6BCFC95AF8A5320@qq.sohu.com","ppauthtest55@sohu.com");
+	
+	for(int i=0;i<=22;i++){
+		registUser("pdph34t1s"+i+"@sohu.com","200","sohu_test");
+		
+	System.out.println(i);
+}
+	
+		//registUser("psdf45sdf@sohu.com","200","sohu_test");
+		//getUserIdByUid("5499fe497402415s");
+		//getUidByUserid("ppauthtest65@sohu.com");
+		//authUser("ada2013001@wap.sohu.com","0");
+	//checkUser("lg7703@bo.sohu.com");
+		//adminUpdatePassword("ada2013005@sohu.com","12345687");
+System.out.println(APITools.xmlInfo);
+
 //		getOpenBindList("6A04A49CA00227FFEB9090A3B20F44AD@qq.sohu.com");
 		//getUserIdListByUUid();
 //		getToken("ppauthtest111@sohu.com");
-//		authToken("ppauthtest111@sohu.com", "7a14e511e64ed49bcdb90dd83de060ab");
-		//authServerToken("7a14e511e64ed49bcdb90dd83de060ab");
-		//authServerToken("bbede89c0ca38d1c890c885d17feb131");
+		//authToken("ppauthtest111@sohu.com", "7a14e511e64ed49bcdb90dd83de060ab");
+		
 	}
 
 }

@@ -22,9 +22,14 @@ public class Param_HuDun {
 			String userid = iter1.next();
 			String status= iter2.next();
 			System.out.print(userid);
+			try{
 			APITools.xmlCheck(HuDun.synchudun(userid),  "status",
 			status);		
-			}
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}	
+		}
 	}
 	public static void gethudunconfig(int sheet, int columns) throws Exception {
 		
@@ -37,8 +42,13 @@ public class Param_HuDun {
 		while (iter1.hasNext()&&iter2.hasNext()){
 			String userid = iter1.next();
 			String status= iter2.next();
+			try{
 			APITools.xmlCheck(HuDun.gethudunconfig(userid),  "status",
-			status);		
+			status);	
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	}
 	public static void sethudunconfig(int sheet, int columns) throws Exception {
@@ -52,8 +62,13 @@ public class Param_HuDun {
 		while (iter1.hasNext()&&iter2.hasNext()){
 			String userid = iter1.next();
 			String status= iter2.next();
+			try{
 			APITools.xmlCheck(HuDun.sethudunconfig(userid),  "status",
 			status);
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		
 		}
 	}

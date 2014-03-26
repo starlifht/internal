@@ -2,6 +2,7 @@ package com.test.internal;
 
 import java.util.Iterator;
 import java.util.List;
+
 import com.test.methods.APITools;
 import com.test.methods.ExcelTools;
 import com.test.methods.Params;
@@ -20,12 +21,15 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String status = iter2.next();
-
+try{
 			APITools.xmlCheck(
 					Internal.checkUser(userid),"status" ,status);
 
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
 		}
-	}
+	}}
 
 	public static void checkuniqname(int sheet, int columns) throws Exception {// ————————检查用户名是否唯一
 		APITools.apiName = APITools.getFuncName();
@@ -39,10 +43,13 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String status = iter2.next();
-
+try{
 			APITools.xmlCheck(
 					Internal.checkuniqname(userid), "status",status);
-
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	}
 	public static void get_createip(int sheet, int columns) throws Exception {// ————————检查用户名是否唯一
@@ -57,10 +64,13 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String status = iter2.next();
-
+try{
 			APITools.xmlCheck(
 					Internal.get_createip(userid), "status",status);
-
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	}
 	public static void authuser(int sheet, int columns) throws Exception {
@@ -76,14 +86,23 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String status = iter2.next();
 			if (userid.equals("18820606515")) {
+				try{
 				APITools.xmlCheck(
-						Internal.authUser(userid, "1"),
-								"status",status);
+						Internal.authUser(userid, "1"),	"status",status);
+			}catch(Exception e){
+				APITools.doException(APITools.apiName, APITools.errorInfo, e);
+				
+			}			
 
 			} else {
+				try{
 				APITools.xmlCheck(
 						Internal.authUser(userid, "0"),
 								"status",status);
+			}catch(Exception e){
+				APITools.doException(APITools.apiName, APITools.errorInfo, e);
+				
+			}
 			}
 		}
 	}
@@ -99,10 +118,13 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String status = iter2.next();
-			
+			try{
 				APITools.xmlCheck(
 						Mobile.wapAuth(userid),"status",status);
-
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		
 		}
 	}
@@ -118,8 +140,13 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String status = iter2.next();
+			try{
 			APITools.xmlCheck(
 					Internal.activate(userid), "status",status);
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	}
 
@@ -135,8 +162,13 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String status = iter2.next();
+			try{
 			APITools.xmlCheck(
 					Internal.syncv(userid), "status",status);
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	}
 
@@ -152,8 +184,13 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String status = iter2.next();
+			try{
 			APITools.xmlCheck(
 					Internal.checkV(userid), "status",status);
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	}
 
@@ -169,8 +206,13 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String status = iter2.next();
+			try{
 			APITools.xmlCheck(
 					Internal.getlastlogin(userid), "status",status);
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	}
 
@@ -190,9 +232,14 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String uniqname = iter2.next();
 			String status = iter3.next();
+			try{
 			APITools.xmlCheck(
 					Internal.updateUser(userid, uniqname),
 					 "status",status);
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 
 		}
 	}
@@ -209,7 +256,12 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String status = iter2.next();
+			try{
 			APITools.jsonCheck(Internal.getCookieInfo(userid),"status", status);
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	}
 
@@ -225,12 +277,17 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String status = iter2.next();
+			try{
 			APITools.xmlCheck(
 					Internal.getUserinfo(userid), "status",status);
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	}
 
-	public static void getUidByUserid(int sheet, int columns) throws Exception {
+	public static void getUidByUserid(int sheet, int columns) throws Exception  {
 		APITools.apiName = APITools.getFuncName();
 
 		List<String> list1 = ExcelTools.ReadExcel(Params.FilePath, sheet,
@@ -242,10 +299,14 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String uid = iter2.next();
+			try{
 			APITools.xmlCheck(
 					Internal.getUidByUserid(userid), "uid", uid);
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
 		}
-	}
+	}}
 
 	public static void getUserIdByUid(int sheet, int columns) throws Exception {
 		APITools.apiName = APITools.getFuncName();
@@ -258,9 +319,14 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String uid = iter2.next();
+			try{
 			APITools.xmlCheck(
 					Internal.getUserIdByUid(uid), "userid",
 					userid);
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	}
 
@@ -275,9 +341,14 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String uuid = iter2.next();
+			try{
 			APITools.xmlCheck(
 					Internal.getUserIdByUUid(uuid), "userid",
 					userid);
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	}
 
@@ -292,8 +363,13 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String uuid = iter2.next();
+			try{
 			APITools.xmlCheck(
 					Internal.getUUidByUserId(userid), "uuid", uuid);
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	}
 
@@ -346,9 +422,14 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String status = iter2.next();
+			try{
 			APITools.xmlCheck(
 					Internal.updatepwd(userid), "status",
 					"0");
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	}
 
@@ -420,9 +501,14 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String status = iter2.next();
+			try{
 			APITools.xmlCheck(
 					Mobile.wap_get_mobile(userid), "status",
 					status);
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	}
 
@@ -442,6 +528,7 @@ public class Param_Internal {
 			String phoneNumber = APITools.getPhoneNum();
 			String s1 = iter1.next();
 			String s2 = iter2.next();
+			try{
 			response1 = Mobile.wapAuthMobile(s1, phoneNumber);
 			APITools.apiName = "wapAuthMobile";
 			APITools.xmlCheck(response1, "status", "0");
@@ -458,6 +545,10 @@ public class Param_Internal {
 			APITools.apiName = "unbindMobile";
 			APITools.xmlCheck(response4, "status",
 					"0");
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 
 		}
 	}
@@ -512,9 +603,14 @@ public class Param_Internal {
 		while (iter1.hasNext() && iter2.hasNext()) {
 			String userid = iter1.next();
 			String status = iter2.next();
+			try{
 			APITools.xmlCheck(
 					Internal.mailsynchuser(userid), "status",
 					status);
+		}catch(Exception e){
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+			
+		}
 		}
 	 }
 	 public static void Bindemail(int sheet,int columns) throws Exception{
@@ -528,9 +624,14 @@ public class Param_Internal {
 			while (iter1.hasNext() && iter2.hasNext()) {
 				String userid = iter1.next();
 				String status = iter2.next();
+				try{
 				APITools.xmlCheck(
 						Internal.Bindemail(userid), "status",
 						status);
+			}catch(Exception e){
+				APITools.doException(APITools.apiName, APITools.errorInfo, e);
+				
+			}
 			}
 	 }
 	public static void clearuserinfo(int sheet, int columns) throws Exception {// 清除用户信息
@@ -547,10 +648,15 @@ public class Param_Internal {
 			String userid = iter1.next();
 			String status = iter2.next();
 			for (int i = 1; i <= 4; i++) {
+				try{
 				APITools.xmlCheck(
 						Internal.clearuserinfo(userid, String.valueOf(i)),
 					
 								"status",status);
+			}catch(Exception e){
+				APITools.doException(APITools.apiName, APITools.errorInfo, e);
+				
+			}
 			}
 		}
 	}

@@ -163,8 +163,8 @@ public class Mobile {
 		String code = PPTools.md5(userid + appid + key + ct);
 		String rtn_xml = "";
 
-		String str_url = Params.DOMAIN+"interface/wap_auth.jsp";
-
+		//String str_url = Params.DOMAIN+"interface/wap_auth.jsp";
+		String str_url = Params.DOMAIN+"interface/wapauth";
 		StringBuffer xml = new StringBuffer();
 		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 		xml.append("<auth>\r\n");
@@ -190,16 +190,13 @@ public class Mobile {
 		String ct = String.valueOf(System.currentTimeMillis() / 1000);
 		String code = PPTools.md5(mobile + appid + key + ct);
 		String rtn_xml = "";
-
 		String str_url = Params.DOMAIN+"interface/sendsms";
-
 		String msg = message;
 		String gwid = "507";
 		String columnid = "5912";
 		String linkid = "";
 		String spcode = "1069019522832";
 		String param = "0";
-
 		StringBuffer xml = new StringBuffer();
 		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 		xml.append("<auth>\r\n");
@@ -214,7 +211,6 @@ public class Mobile {
 		xml.append("<spcode>" + spcode + "</spcode>\r\n");
 		xml.append("<param>" + param + "</param>\r\n");
 		xml.append("</auth>");
-
 		APITools.xmlInfo=xml.toString();
 		rtn_xml = CommonTools.createXMLURLConnection(str_url, xml.toString());
 
@@ -428,7 +424,7 @@ public class Mobile {
 		return rtn_xml;
 	}
 	public static String  sendJms() throws Exception {//发送jms，目前支持发送用户账户注册和修改的消息，目前仅限1097使用
-		String message = "{\"messageType\":\"update\",\"user\":{\"userid\":\"zhangxiumin2010@sohu.com\",\"uniqname\":\"houlinyan01\",\"ip\":\"10.1.80.103\"},\"sendAppid\":\"9998\"}";
+		String message = "dfgd";
 		String appid = "1097";
 		//String appid = "200";
 		String key = "SN*ET4EH+%=&Su<m%U[9oclrO)s%s4";
@@ -487,8 +483,8 @@ public class Mobile {
 		String sig = PPTools.md5(userid+appid+gid+key );
 		System.out.println(userid+appid+gid+key);
 //		String str_url = "http://internal.passport.sohu.com/interface/wap_auth_mobile.jsp";
-		String str_url = Params.DOMAIN+"mobile/gettoken";
-
+		//String str_url =  Params.DOMAIN+"mobile/gettoken";
+		String str_url =  "http://passport.sohu.com/mobile/gettoken";
 		StringBuffer xml = new StringBuffer();
 		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 		xml.append("<info>\r\n");
@@ -510,12 +506,14 @@ public class Mobile {
 
 		return rtn_xml;
 	}
-	public static String  mobile_authtoken () throws Exception{//手机app的校验登录token
+	public static String  mobile_authtoken (String 
+			Token ) throws Exception{//手机app的校验登录token
 
-		String userid = "s_pa31594145yjaz@sohu.com"; 
+		String userid = "s_pa67153888gqou@sohu.com"; 
 		String appid = "9998";
 		String key = "iqE?q#gv8--`G/jGA51]=ZANMg?=Lm";
-		String token = "31fad3316d00a1c33977ab49540337f2";
+		String token =Token;
+	
 		String rtn_xml = "";
 		String ostype ="02";
 		String modeltype ="ffff";  
@@ -531,7 +529,7 @@ public class Mobile {
 		    gid = ostype + modeltype + appid + mask + PPTools.md5(imei + imsi + mac);
 		}
 	String sig = PPTools.md5(userid+token+appid+gid+key );
-	System.out.println(userid + token + appid + gid + key);
+//	System.out.println(userid + token + appid + gid + key);
 		String str_url = Params.DOMAIN+"interface/mobile_authtoken";
 	StringBuffer xml = new StringBuffer();
 		xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
@@ -801,7 +799,7 @@ public static String authMobCode() throws Exception{
 
 public static String  wapgetmobile() throws Exception{//查询用户绑定的手机号
     String url=Params.DOMAIN+"interface/wapgetmobile";
-    String userid = "houlinyan@sohu.com";
+    String userid = "auada_008@sohu.com";
     String ct = String.valueOf(System.currentTimeMillis() / 1000);
     String appid = "200";
     String key = "sohu_test";
@@ -851,17 +849,20 @@ public static String  reguser(String userID) throws Exception{//手机app注册
 	
 	public static void main(String[] args) throws Exception {
 		Params.getParams();
-		
+		//mobile_gettoken();
 	//	getMobCode("18810606513");
 //		mobile_gettoken();
 	//wapAuthMobile(user1,PhoneNum);
 //mobileRegUser();
-		reguser("justtest97@sohu.com");
-		System.out.println(APITools.xmlInfo);
-		//sendcaptcha();
-//wapBindMobile("ppauthtest458@sohu.com","13811454236");
-		//wapUnBindMobile("15652707429");
-		//sendcaptcha();
+		//wapAuth("ppauthtest33@sohu.com");
+		//reguser("justtest97@sohu.com");
+//		sendSms("18811606512","sdfdsf");
+//		System.out.println(APITools.xmlInfo);
+//		sendcaptcha("17791480869");
+		mobile_gettoken();
+		mobile_authtoken("dab88ec435f98bc163aa6687899de108");
+		//getMobCode("18810606513");
+		//authMobCode();
 //switchMobile(user2,user1,PhoneNum);
 //	wapGetUserid();
 //		unbindMobile(user2,PhoneNum);

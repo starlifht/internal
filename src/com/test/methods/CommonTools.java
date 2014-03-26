@@ -38,7 +38,6 @@ public class CommonTools {
 
 	        formatString.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 	        formatString.append("<info>\r\n");
-
 	        Iterator iter = hm.keySet().iterator();
 	        while (iter.hasNext()) {
 	            key = (String) iter.next();
@@ -89,9 +88,7 @@ public class CommonTools {
 		HttpURLConnection con = null;
 		BufferedReader br = null;
 		BufferedWriter bw = null;
-		InputStream is = null;
-
-	
+		InputStream is = null;	
 			System.setProperty("sun.net.client.defaultConnectTimeout", "2000");
 			System.setProperty("sun.net.client.defaultReadTimeout", "2000");
 			url = new URL(str_url);
@@ -202,7 +199,7 @@ public class CommonTools {
 	            String response="";
 	            for (line = br.readLine(); line != null; line = br.readLine()) {
 	              response=response+line;
-	            }
+	            } 
 				return response;
 	    
 	     

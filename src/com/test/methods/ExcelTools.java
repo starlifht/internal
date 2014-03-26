@@ -27,7 +27,6 @@ public class ExcelTools {
 
 			// 将定义好的单元格添加到工作表中
 			sheet.addCell(label);
-
 			/*
 			 * 生成一个保存数字的单元格 必须使用Number的完整包路径，否则有语法歧义 单元格位置是第二列，第一行，值为789.123
 			 */
@@ -42,7 +41,6 @@ public class ExcelTools {
 			System.out.println(e);
 		}
 	}
-
 	public static List<String> ReadExcel(String url, int sheet,int column) throws Exception {// 读取excel sheet a
 
 	column--;

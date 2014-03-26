@@ -3,9 +3,11 @@ package com.test.internal;
 import com.interapi.open.InterOpen;
 import com.test.methods.APITools;
 import com.test.methods.Params;
+import com.test.methods.XML;
 
 public class Auto_Internal {//test
 	static String response;
+	static String token;
 	public static void Auto_interOpen(){
 		try{
 			APITools.apiName="checkauth";
@@ -105,13 +107,15 @@ public static void checkUser(){
 	}
 }
 public static void getUidByUserid(){
-	try {
+	
 
-		Param_Internal.getUidByUserid(11, 2);//！！！！！！getUidByUserid
-	} catch (Exception e) {
-		APITools.doException(APITools.apiName, APITools.errorInfo, e);
-
-	}
+		try {
+			Param_Internal.getUidByUserid(11, 2);
+		} catch (Exception e) {
+			APITools.doException(APITools.apiName, APITools.errorInfo, e);
+		}//！！！！！！getUidByUserid
+	
+	
 }
 public static void getUserIdByUid(){
 	try {
@@ -233,10 +237,20 @@ public static void getMobCode(){//
 		APITools.doException(APITools.apiName, APITools.errorInfo, e);
 		}
 }
+public static void mobile_gettoken(){//
+	try{
+		APITools.apiName="mobile_gettoken";
+		response=Mobile.mobile_gettoken();
+		token =XML.string2Doc(response).getRootElement().getChildText("token");
+		APITools.xmlCheck(response, "status", "0");
+	}catch(Exception e){
+		APITools.doException(APITools.apiName, APITools.errorInfo, e);
+		}
+}
 public static void mobile_authtoken(){//
 	try{
 		APITools.apiName="mobile_authtoken";
-		response=Mobile.mobile_authtoken();
+		response=Mobile.mobile_authtoken(token);
 		APITools.xmlCheck(response, "status", "0");
 	}catch(Exception e){
 		APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -293,7 +307,7 @@ public static void updatepwd(){
 public static void recoverpwd(){
 	try{
 		APITools.apiName="recoverpwd";
-		response=Internal.recoverpwd("ppauthtest32@sohu.com");
+		response=Internal.recoverpwd("psdf45sdf@sohu.com");
 		APITools.xmlCheck(response, "status", "0");
 	}catch(Exception e){
 					APITools.doException(APITools.apiName, APITools.errorInfo, e); 
@@ -357,7 +371,7 @@ public static void sendStoken(){
 public static void verifySToken(){
 	try{//！！！！！！！！！！！！！！！！verifySToken
 		 APITools.apiName="verifySToken";		
-		 response=HuDun.verifySToken("ppauthtest32@sohu.com","05291");
+		 response=HuDun.verifySToken("ppauthtest2@sohu.com","05291");
 			APITools.xmlCheck(response, "status", "1");			
 			}catch(Exception e){
 	APITools.doException(APITools.apiName, APITools.errorInfo, e);
@@ -454,7 +468,9 @@ public static void up_del_OpenBind(){
 
 	public static void main(String[] args) {
 		Params.getParams();
-		wapauth();
+//		mobile_gettoken();
+//		mobile_authtoken();
+		getUserIdByUUid();
 	}
 
 }

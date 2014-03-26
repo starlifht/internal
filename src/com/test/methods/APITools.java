@@ -4,8 +4,6 @@ import java.io.InputStream;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -19,7 +17,6 @@ import java.util.regex.Pattern;
 
 import net.sf.json.JSONObject;
 
-import com.test.internal.PPTools;
 
 
 
@@ -120,7 +117,7 @@ public class APITools {
 	public static void doException(String APIname,StringBuffer info,Exception e) 
 	{//¥¶¿Ì“Ï≥£
 		e.printStackTrace();
-		getInfo(info,APIname,"[ERROR]"+e.toString());
+		getInfo(info,APIname,"[ERROR]"+e.toString()+APITools.replaceBlank(APITools.xmlInfo.trim()));
 
 	}
 
@@ -177,8 +174,9 @@ public class APITools {
 		return p.getProperty(value);
 	}
 	public static void main(String[] args) throws Exception {
+String s="{\"error_code\":\"10200\",\"access_token\":\"9eeedd319b2644d99cc4709a29c2bf95\"}";
 
-		//System.out.println(InetAddress.getByName("internal-test.apps.sohuno.com"));
+		System.out.println(JSONObject.fromObject(s).getString("access_token"));
 		
 	}
 
