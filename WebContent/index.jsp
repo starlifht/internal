@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=GBK"
-    pageEncoding="GBK"%>
-     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <html>
 <head>
 <%
@@ -41,10 +39,8 @@ margin:10px auto;
 }
 </style>
 <title>Internal Monitor</title>
-
 </head>
 <body>
-
 <div class="title">
 <h1>Internal接口自动化 Moniror is Running......</h1>
 <small>Copyright @ 2014 Sohu.com Inc. All Rights Reserved. 搜狐公司 版权所有</small>
