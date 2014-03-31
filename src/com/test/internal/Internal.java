@@ -1092,20 +1092,20 @@ APITools.xmlInfo=xml.toString();
 		//System.out.println(PPTools.md5("star7788899"));
 		//update_password("hey÷”∫Í—‡@focus.cn");
 	
-	for(int i=0;i<=22;i++){
-		registUser("pdph34t1s"+i+"@sohu.com","200","sohu_test");
-		
-	System.out.println(i);
-}
+//	for(int i=0;i<=22;i++){
+//		registUser("pdph34t1s"+i+"@sohu.com","200","sohu_test");
+//		
+//	System.out.println(i);
+//}
 	
-		//registUser("psdf45sdf@sohu.com","200","sohu_test");
+		registUser("18410606513@sohu.com","200","sohu_test");
 		//getUserIdByUid("5499fe497402415s");
 		//getUidByUserid("ppauthtest65@sohu.com");
 		//authUser("ada2013001@wap.sohu.com","0");
 	//checkUser("lg7703@bo.sohu.com");
 		//adminUpdatePassword("ada2013005@sohu.com","12345687");
 System.out.println(APITools.xmlInfo);
-
+//registUser("ppauthtest88@vip.sohu.com","1013","djfi(Y&%ye483y45&%^830934dHisd2y%*HIUGDdii");
 //		getOpenBindList("6A04A49CA00227FFEB9090A3B20F44AD@qq.sohu.com");
 		//getUserIdListByUUid();
 //		getToken("ppauthtest111@sohu.com");

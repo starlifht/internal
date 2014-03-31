@@ -859,8 +859,8 @@ public static String  reguser(String userID) throws Exception{//ÊÖ»úapp×¢²á
 //		sendSms("18811606512","sdfdsf");
 //		System.out.println(APITools.xmlInfo);
 //		sendcaptcha("17791480869");
-		mobile_gettoken();
-		mobile_authtoken("dab88ec435f98bc163aa6687899de108");
+		//mobile_gettoken();
+		regmobiled("18410606513");
 		//getMobCode("18810606513");
 		//authMobCode();
 //switchMobile(user2,user1,PhoneNum);
