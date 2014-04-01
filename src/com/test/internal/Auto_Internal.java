@@ -470,7 +470,7 @@ public static void up_del_OpenBind(){
 		Params.getParams();
 //		mobile_gettoken();
 //		mobile_authtoken();
-		getUserIdByUUid();
+		getCookieInfo();
 	}
 
 }

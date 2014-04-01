@@ -1097,8 +1097,8 @@ APITools.xmlInfo=xml.toString();
 //		
 //	System.out.println(i);
 //}
-	
-		registUser("18410606513@sohu.com","200","sohu_test");
+	getCookieInfo("lg7703@bo.sohu.com");
+		//registUser("sdf065df13@focus.cn","200","sohu_test");
 		//getUserIdByUid("5499fe497402415s");
 		//getUidByUserid("ppauthtest65@sohu.com");
 		//authUser("ada2013001@wap.sohu.com","0");

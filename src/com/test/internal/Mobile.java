@@ -660,7 +660,7 @@ public class Mobile {
 	       String code = PPTools.md5(mobile + appid + key + ct);
 	       String rtn_xml = "";
 	       String str_url = Params.DOMAIN+"interface/sendcaptcha";
-	       String type= "3";//1、注册；3、绑定手机号；4解绑手机号
+	       String type= "1";//1、注册；3、绑定手机号；4解绑手机号
 	       StringBuffer xml = new StringBuffer();
 	       xml.append("<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n");
 	       xml.append("<info>\r\n");
@@ -860,7 +860,7 @@ public static String  reguser(String userID) throws Exception{//手机app注册
 //		System.out.println(APITools.xmlInfo);
 //		sendcaptcha("17791480869");
 		//mobile_gettoken();
-		regmobiled("18410606513");
+		sendcaptcha("18911208605");
 		//getMobCode("18810606513");
 		//authMobCode();
 //switchMobile(user2,user1,PhoneNum);

@@ -60,7 +60,7 @@ public class APITools {
 				APITools.getInfo(logInfo, APITools.apiName, response);
 
 			}else{
-				APITools.getInfo(errorInfo, APITools.apiName, "[ERROR]"+response);
+				APITools.getInfo(errorInfo, APITools.apiName, "[ERROR]"+response+APITools.replaceBlank(APITools.xmlInfo.trim()));
 
 			}
 			
