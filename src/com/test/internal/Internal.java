@@ -31,7 +31,7 @@ public class Internal {
 		String userid = userId;
 		String uniqname = "absouhu4";
 		String birthday = "1978-11-16";
-		String createip = "159.1.80.232";
+		String createip = "10.1.80.232";
 		String gender = "2";
 		String username = "XIAOxie32";
 		String question = "我的名字是什么";
@@ -374,7 +374,7 @@ APITools.xmlInfo=xml.toString();
 		xml.append("<userid>" + userid + "</userid>\r\n");
 		xml.append("<appid>" + appid + "</appid>\r\n");
 		xml.append("<ct>" + ct + "</ct>\r\n");
-		xml.append("<ip>" + "123.12.12.12" + "</ip>\r\n");
+		xml.append("<ip>" + "10.12.12.12" + "</ip>\r\n");
 		xml.append("<code>" + code + "</code>\r\n");
 		xml.append("<password>" + password + "</password>\r\n");
 		xml.append("<pwdtype>" + "0" + "</pwdtype>\r\n"); 
@@ -1097,7 +1097,7 @@ APITools.xmlInfo=xml.toString();
 //		
 //	System.out.println(i);
 //}
-	getCookieInfo("lg7703@bo.sohu.com");
+	getCookieInfo("000111aaab@game.sohu.com");
 		//registUser("sdf065df13@focus.cn","200","sohu_test");
 		//getUserIdByUid("5499fe497402415s");
 		//getUidByUserid("ppauthtest65@sohu.com");

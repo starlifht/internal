@@ -11,7 +11,8 @@ public class Params {
 	//public static  String FilePath;
 	public static  String tmpLog;
 	public static void getDOMAIN(){
-		DOMAIN= APITools.getProperty("domain");
+		//DOMAIN= APITools.getProperty("domain");
+		DOMAIN="http://passport-service-test.apps.sohuno.com/";
 	}
     
 	public static void getFilePath(){
